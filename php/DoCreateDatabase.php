@@ -37,7 +37,7 @@ $mysqli->query($str);
 
 /// 计算
 
-$results=exec("../run/makefilelist  ". $fileLocation);
+$results=exec("../run/makefilelist.exe ". $fileLocation . " " . $database);
 
 if ( $results == "SUCCESS"){
     $myfile = fopen("result.txt", "r") or die("Unable to open file!");
