@@ -29,7 +29,7 @@ $(document).ready(function () {
         $("#after-button").prepend(
             "<h4>Database Name:    "+ databaseName+ "</h4>"+
             "<h4>File List Name:"+fileName+ "</h4>"+
-            "<h4>Sure to make the dataabse?</h4>"
+            "<h4>Sure to make the database?</h4>"
         );
     }else{
         $("#pre-button").css('display','block');
@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
     $('#af-button').click(function () {
-        $.get("./php/DoCreateDatabase.php",{database:databaseName,filename:fileName});
+        $.get("./php/DoCreateDatabase.php",{database:databaseName,filename:status[3]});
     });
 
     $("#begin-button").click(function() {

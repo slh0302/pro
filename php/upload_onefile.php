@@ -34,7 +34,7 @@
        //$_POST['database'];
         print_r($info);
         echo '</pre>';
-        header("Location: ../upload.html?status=success&database=". $_POST['database'] . "&filename=" . $info['metas'][0][name] );
+        header("Location: ../upload.html?status=success&database=". $_POST['database'] . "&filename=" . $info['metas'][0]['name']. "&fileLocation=" . $info['metas'][0]['file'] );
 //        header("Location: ../upload.html?status=success&");
     }
 

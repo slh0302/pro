@@ -24,20 +24,23 @@ if(!is_null($_GET["database"])) {
 }
 
 if(!is_null($_GET["filename"])) {
-    $database = $_GET["filename"];
+    $fileLocation = $_GET["filename"];
 }
-
 
 $mysqli->query("Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ".
     "`name` varchar(45) DEFAULT NULL ,  Location varchar(45) DEFAULT NULL, PRIMARY KEY (id))");
 
+$str="Insert into db_file (`database`, fileLocation) VALUES (". "'" . $database . "' , '" .$fileLocation . "' );";
+$mysqli->query($str);
 
-///jisuanqi
 
-$results=exec("./run/makefilelist  ". "filename");
+
+/// 计算
+
+$results=exec("../run/makefilelist  ". $fileLocation);
 
 if ( $results == "SUCCESS"){
-    $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+    $myfile = fopen("result.txt", "r") or die("Unable to open file!");
     echo fread($myfile,filesize("webdictionary.txt"));
     fclose($myfile);
 }
