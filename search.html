@@ -4,18 +4,18 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<head>
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Blend &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	
 
-  
 
-  	<!-- Facebook and Twitter integration -->
+
+
+	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
 	<meta property="og:url" content=""/>
@@ -31,19 +31,21 @@
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="src/bootstrap-table.css">
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet" href="css/cropper.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -51,139 +53,169 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	</head>
-	<body>
+</head>
+<body>
 
-	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+<div id="fh5co-page">
 
-			<h1 id="fh5co-logo"><a href="index.html"><img src="images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
-			<nav id="fh5co-main-menu" role="navigation">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="listPhotos.html">Photos</a></li>
-					<li><a href="upload.html">Upload</a></li>
-					<li class="fh5co-active"><a href="search.html">Search</a></li>
-				</ul>
-			</nav>
+	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+	<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-			<div class="fh5co-footer">
-				<p>Writer: Su LiHui</p>
-				<ul>
-					<li><a href="#"><i class="icon-facebook"></i></a></li>
-					<li><a href="#"><i class="icon-twitter"></i></a></li>
-					<li><a href="#"><i class="icon-instagram"></i></a></li>
-					<li><a href="#"><i class="icon-linkedin"></i></a></li>
-				</ul>
-			</div>
+		<h1 id="fh5co-logo"><a href="index.html"><img src="images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
+		<nav id="fh5co-main-menu" role="navigation">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="listPhotos.html">Photos</a></li>
+				<li><a href="upload.html">Upload</a></li>
+				<li class="fh5co-active"><a href="search.html">Search</a></li>
+			</ul>
+		</nav>
 
-		</aside>
-
-		<div id="fh5co-main">
-
-			<div id="map"></div>	
-
-			<div class="fh5co-more-contact">
-				<div class="fh5co-narrow-content">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-envelope-o"></i>
-								</div>
-								<div class="fh5co-text">
-									<p><a href="#">info@domain.com</a></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-map-o"></i>
-								</div>
-								<div class="fh5co-text">
-									<p>198 West 21th Street, Suite 721 New York NY 10016</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="fh5co-feature fh5co-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="fh5co-icon">
-									<i class="icon-phone"></i>
-								</div>
-								<div class="fh5co-text">
-									<p><a href="tel://">+123 456 7890</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
-				
-				<div class="row">
-					<div class="col-md-4">
-						<h1>Get In Touch</h1>
-					</div>
-				</div>
-				<form action="">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Email">
-									</div>
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Phone">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-									</div>
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="Send Message">
-									</div>
-								</div>
-								
-							</div>
-						</div>
-						
-					</div>
-				</form>
-			</div>
-
+		<div class="fh5co-footer">
+			<p>Writer: Su LiHui</p>
+			<ul>
+				<li><a href="#"><i class="icon-facebook"></i></a></li>
+				<li><a href="#"><i class="icon-twitter"></i></a></li>
+				<li><a href="#"><i class="icon-instagram"></i></a></li>
+				<li><a href="#"><i class="icon-linkedin"></i></a></li>
+			</ul>
 		</div>
+
+	</aside>
+
+	<div id="fh5co-main">
+
+
+
+		<div class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
+			<div class="row">
+				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+					<h1 class="fh5co-heading">Search Images</h1>
+				</div>
+			</div>
+			<div class="docs-buttons" >
+				<div class="row" style="margin-top: 20px">
+					<img style="max-width: 100%" id="image" src="images/person1.jpg">
+				</div>
+				<div class="row" style="margin-top: 20px;text-align: center">
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+						  <span class="fa fa-arrows"></span>
+						</span>
+						</button>
+						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+						  <span class="fa fa-crop"></span>
+						</span>
+						</button>
+					</div>
+
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+				<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
+				  <span class="fa fa-search-plus"></span>
+				</span>
+						</button>
+						<button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+				<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
+				  <span class="fa fa-search-minus"></span>
+				</span>
+						</button>
+					</div>
+
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary" data-method="crop" title="Crop">
+				<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;crop&quot;)">
+				  <span class="fa fa-check"></span>
+				</span>
+						</button>
+						<button type="button" class="btn btn-primary" data-method="clear" title="Clear">
+				<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;clear&quot;)">
+				  <span class="fa fa-remove"></span>
+				</span>
+						</button>
+					</div>
+
+					<div class="btn-group">
+						<button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;reset&quot;)">
+							  <span class="fa fa-refresh"></span>
+							</span>
+						</button>
+						<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+							<input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Import image with Blob URLs">
+							 <span class="fa fa-upload"></span>
+							</span>
+						</label>
+						<button type="button" class="btn btn-primary" data-method="destroy" title="Destroy">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;destroy&quot;)">
+							  <span class="fa fa-power-off"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 20px;text-align: center">
+					<button type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;getCroppedCanvas&quot;)">
+						  Get Cropped Picture and Search
+						</span>
+					</button>
+				</div>
+				<!-- Show the cropped image in modal -->
+				<div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+							</div>
+							<div class="modal-body"></div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.modal -->
+			</div>
+		</div>
+
+
+		<div class="fh5co-narrow-content">
+			<div class="row">
+				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+					<h1 class="fh5co-heading-colored">Results</h1>
+				</div>
+			</div>
+		</div>
+
 	</div>
+</div>
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Stellar -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- Stellar -->
+<script src="js/jquery.stellar.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script src="js/jquery.countTo.js"></script>
 
-	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
+<script src="js/cropper.js"></script>
+<!-- MAIN JS -->
 
-	</body>
+<script src="js/main.js"></script>
+<script src="dataJs/search.js"></script>
+</body>
 </html>
 
