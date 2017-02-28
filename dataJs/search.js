@@ -18,6 +18,10 @@ $(document).ready(function () {
     if (!$.isFunction(document.createElement('canvas').getContext)) {
         $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
     }
+    if (typeof document.createElement('cropper').style.transition === 'undefined') {
+        $('button[data-method="rotate"]').prop('disabled', true);
+        $('button[data-method="scale"]').prop('disabled', true);
+    }
     //download
     if (typeof $download[0].download === 'undefined') {
         $download.addClass('disabled');
@@ -79,14 +83,6 @@ $(document).ready(function () {
 
                     break;
 
-                case 'destroy':
-                    if (uploadedImageURL) {
-                        URL.revokeObjectURL(uploadedImageURL);
-                        uploadedImageURL = '';
-                        $image.attr('src', originalImageURL);
-                    }
-
-                    break;
             }
 
             if ($.isPlainObject(result) && $target) {
