@@ -135,15 +135,8 @@ $(document).ready(function () {
     $("#search-btn").click(function () {
         var text = $('#crop-pic').val();
         da=text.split(';')[1].split(',')[1];
-
-        $.ajax({
-            url: "./php/search_upload.php",
-            type: "post",
-            data: da,
-            dataType: "json",
-            success: function(data) {
-
-            }
+        $.post("./php/search_upload.php",{data:da},function () {
+            
         });
     });
 
