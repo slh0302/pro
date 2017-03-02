@@ -5,7 +5,7 @@ $(document).ready(function () {
     var $image = $('#image');
     var originalImageURL = $image.attr('src');
     var uploadedImageURL;
-    var $download = $('#download');
+  //  var $download = $('#download');
     var options = {
         aspectRatio: NaN,
         crop: function(e) {
@@ -23,9 +23,9 @@ $(document).ready(function () {
         $('button[data-method="scale"]').prop('disabled', true);
     }
     //download
-    if (typeof $download[0].download === 'undefined') {
-        $download.addClass('disabled');
-    }
+    // if (typeof $download[0].download === 'undefined') {
+    //     $download.addClass('disabled');
+    // }
 
 
     // Methods
@@ -73,12 +73,14 @@ $(document).ready(function () {
                 case 'getCroppedCanvas':
                     if (result) {
                         console.info(result);
+                        var
                         // Bootstrap's Modal
+                        $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-
-                        if (!$download.hasClass('disabled')) {
-                            $download.attr('href', result.toDataURL('image/jpeg'));
-                        }
+                        //$('#getCroppedCanvasModal').modal();
+                        // if (!$download.hasClass('disabled')) {
+                        //     $download.attr('href', result.toDataURL('image/jpeg'));
+                        // }
                     }
 
                     break;
@@ -129,5 +131,24 @@ $(document).ready(function () {
     } else {
         $inputImage.prop('disabled', true).parent().addClass('disabled');
     }
+
+
+    $("#search-btn").click(function () {
+        var text = $('#crop-pic').val();
+        da=text.split(';')[1].split(',')[1];
+
+        $.ajax({
+            url: "./php/search_upload.php",
+            type: "post",
+            data: da,
+            dataType: "json",
+            success: function(data) {
+
+            }
+        });
+    });
+
+
+
 
 });

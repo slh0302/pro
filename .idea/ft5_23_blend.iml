@@ -14,6 +14,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="test" />
+    <orderEntry type="module" module-name="crop" />
   </component>
 </module>

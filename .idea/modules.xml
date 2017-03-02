@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../crop/.idea/crop.iml" filepath="$PROJECT_DIR$/../crop/.idea/crop.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ft5_23_blend.iml" filepath="$PROJECT_DIR$/.idea/ft5_23_blend.iml" />
-      <module fileurl="file://F:/test/.idea/test.iml" filepath="F:/test/.idea/test.iml" />
     </modules>
   </component>
 </project>
