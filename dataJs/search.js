@@ -73,7 +73,6 @@ $(document).ready(function () {
                 case 'getCroppedCanvas':
                     if (result) {
                         console.info(result);
-                        var
                         // Bootstrap's Modal
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
