@@ -6,6 +6,22 @@
  * Time: 15:12
  *
  */
+function my_exec($cmd, $input='')
+ {
+     $proc = proc_open($cmd, array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
+     fwrite($pipes[0], $input);
+     fclose($pipes[0]);
+     $stdout = stream_get_contents($pipes[1]);
+     fclose($pipes[1]);
+     $stderr = stream_get_contents($pipes[2]);
+     fclose($pipes[2]);
+     $rtn = proc_close($proc);
+     return array('stdout' => $stdout,
+         'stderr' => $stderr,
+         'return' => $rtn
+     );
+ }
+
 
 $input = filter_input_array(INPUT_POST);
 
@@ -19,9 +35,9 @@ $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返�
 //print_r($a);
 //Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 
-
-$results=exec("../run/DoSearch.sh ". $fileLocation . " " . $database);
-
+$execString="../run/search/DoSearch.sh  "."../searchFIle/". $filename;
+//echo $execString;
+$results=my_exec($execString);
 $dir = "../resultFile/";
 $file = scandir($dir);
 $length = count($file);
