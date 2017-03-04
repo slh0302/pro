@@ -1,0 +1,8 @@
+2.53118
+./images/work_1.jpg
+./images/work_2.jpg
+./images/work_3.jpg
+./images/work_4.jpg
+./images/work_5.jpg
+
+

@@ -21,7 +21,15 @@ function my_exec($cmd, $input='')
          'return' => $rtn
      );
  }
-
+ function dir_is_empty($dir){
+    if($handle = opendir("$dir")) {
+        while($item = readdir($handle)){
+            if ($item != "." && $item != "..")
+                return false;
+        }
+    }
+    return true;
+ }
 
 $input = filter_input_array(INPUT_POST);
 
@@ -35,17 +43,31 @@ $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返�
 //print_r($a);
 //Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 
-$execString="../run/search/DoSearch.sh  "."../searchFIle/". $filename;
+
+//exec 执行
+//$execString="../run/search/DoSearch.sh  "."../searchFIle/". $filename;
 //echo $execString;
-$results=my_exec($execString);
-$dir = "../resultFile/";
-$file = scandir($dir);
-$length = count($file);
+//$results=my_exec($execString);
+$file_reslut=array();
+$usetime="";
+if(!dir_is_empty("../run/runResult")) {
+
+    if($myfile = fopen("../run/runResult/result.txt", "r") or die("Unable to open file!")){
+        $usetime =fgets($myfile);
+        while(!feof($myfile)) {
+            $path = fgets($myfile);
+            array_push($file_reslut,$path);
+        }
+    }
+}
 
 
-if( $length > 2 ){
-    $newFile=array_slice($file,2,count($file));
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$newFile);
+//$dir = "../resultFile/";
+//$file = scandir($dir);
+$length = count($file_reslut);
+
+if( $length > 0 ){
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_reslut,"cost time"=>$usetime);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
 }

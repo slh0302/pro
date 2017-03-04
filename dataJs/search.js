@@ -155,7 +155,11 @@ $(document).ready(function () {
             success:function(data,textStatus,jqXHR){
                 // alert(data['img'])
                 //
-                $("#mytest").viewer();
+                var myViewer=$("#mytest");
+                $.each(data['img'],function(n,value) {
+                    myViewer.append("<li><img src="+value+" alt='图片1'></li>");
+                });
+                myViewer.viewer();
             },
             error:function(xhr,textStatus){
                 console.log('错误');
