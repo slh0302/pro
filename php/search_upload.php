@@ -45,9 +45,9 @@ $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返�
 
 
 //exec 执行
-//$execString="../run/search/DoSearch.sh  "."../searchFIle/". $filename;
+$execString="../run/search/DoSearch.sh  "."/home/slh/web/pro/searchFIle/". $filename;
 //echo $execString;
-//$results=my_exec($execString);
+$results=my_exec($execString);
 $file_reslut=array();
 $usetime="";
 if(!dir_is_empty("../run/runResult")) {
