@@ -135,9 +135,41 @@ $(document).ready(function () {
     $("#search-btn").click(function () {
         var text = $('#crop-pic').val();
         da=text.split(';')[1].split(',')[1];
-        $.post("./php/search_upload.php",{data:da},function () {
-            
+        $('#getCroppedCanvasModal').modal('hide');
+        $("#searche-target").css('display','none');
+        $("#searche-result").css('display','block');
+        $.ajax({
+            url:'./php/search_upload.php',
+            type:'POST', //GET
+            data:{
+                data:da
+            },
+            timeout:5000,    //超时时间
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend:function(xhr){
+                $('.loading').fadeIn();
+
+                console.log(xhr);
+                console.log('发送前');
+            },
+            success:function(data,textStatus,jqXHR){
+                // alert(data['img'])
+                //
+                $("#mytest").viewer();
+            },
+            error:function(xhr,textStatus){
+                console.log('错误');
+                console.log(xhr);
+                console.log(textStatus);
+            },
+            complete:function(){
+                $('.loading').fadeOut();
+                console.log('结束');
+            }
         });
+        // $.post("./php/search_upload.php",{data:da},function (data) {
+        //     alert(data);
+        // });
     });
 
 
