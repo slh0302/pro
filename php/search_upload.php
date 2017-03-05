@@ -46,7 +46,7 @@ $a = file_put_contents('/var/www/html/pro/searchFile/'. $filename, $img);//保�
 
 //exec 执行
 $execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
-#echo $execString;
+//echo $execString;
 $results=exec($execString);
 $file_result=array();
 $usetime="";
@@ -63,9 +63,6 @@ if(!dir_is_empty("../run/runResult")) {
     }
 }
 
-
-//$dir = "../resultFile/";
-//$file = scandir($dir);
 $length = count($file_result);
 
 if( $length > 0 ){

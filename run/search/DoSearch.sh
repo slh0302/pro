@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd /home/slh/Vechile_Search/libfaster_rcnn_cpp
-echo $1
 ./bin/DoIndex -c ~/shuju/ste108000010 10800000  $1 1 1 128 GPU 0
 
 
