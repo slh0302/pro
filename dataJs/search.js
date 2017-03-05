@@ -138,6 +138,8 @@ $(document).ready(function () {
         $('#getCroppedCanvasModal').modal('hide');
         $("#searche-target").css('display','none');
         $("#searche-result").css('display','block');
+
+        //$.get('./php/search_upload.php');
         $.ajax({
             url:'./php/search_upload.php',
             type:'POST', //GET
@@ -157,8 +159,9 @@ $(document).ready(function () {
                 //
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
-                    myViewer.append("<li><img src="+value+" alt='图片1'></li>");
+                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+n+"</span></li>");
                 });
+                $("#search-time").append("<h4>Time Used For Searching:"+data['usetime']+"s </h4>");
                 myViewer.viewer();
             },
             error:function(xhr,textStatus){

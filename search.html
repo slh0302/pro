@@ -48,6 +48,13 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" href="css/viewer.min.css">
+
+	<style type="text/css">
+		ul.imglist{ margin:0 auto;overflow:hidden}
+		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
+		ul.imglist li img{ display:block; width:220px; height:180px;padding: 10px}
+		ul.imglist li span{ display:block; width:220px; height:35px; line-height:30px;  border-style:solid;border-color: #ffffff; background: #F6F6F6 }
+	</style>
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -165,17 +172,26 @@
 		</div>
 
 
-		<div id="searche-result" class="fh5co-narrow-content" style="display: none">
+		<div id="searche-result" class="fh5co-narrow-content" >
 			<div class="row">
 				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 					<h1 class="fh5co-heading-colored">Results</h1>
+
+
+				</div>
+				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft"></div>
+				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 					<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-				<ul id="mytest">
+				<div id="search-time" class="col-sm-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: right;padding-right:150px">
 
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+				<ul id="mytest" class="imglist">
 				</ul>
 				</div>
 			</div>
