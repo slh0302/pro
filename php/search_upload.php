@@ -39,35 +39,37 @@ $base64 =trim($data);
 //echo $base64;
 $img = base64_decode($base64);
 $filename = date('YmdHis') .'.jpg';
-$a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返回的是字节数
+$a = file_put_contents('/var/www/html/pro/searchFile/'. $filename, $img);//保存图片，返回的是字节数
 //print_r($a);
 //Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 
 
 //exec 执行
-$execString="../run/search/DoSearch.sh  "."/home/slh/web/pro/searchFIle/". $filename;
-//echo $execString;
-$results=my_exec($execString);
-$file_reslut=array();
+$execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
+#echo $execString;
+$results=exec($execString);
+$file_result=array();
 $usetime="";
 if(!dir_is_empty("../run/runResult")) {
 
-    if($myfile = fopen("../run/runResult/result.txt", "r") or die("Unable to open file!")){
+   if($myfile = fopen("../run/runResult/result.txt", "r") or die("Unable to open file!")){
         $usetime =fgets($myfile);
         while(!feof($myfile)) {
             $path = fgets($myfile);
-            array_push($file_reslut,$path);
-        }
+            if($path != ""){
+	    	array_push($file_result,$path);
+            }
+	}
     }
 }
 
 
 //$dir = "../resultFile/";
 //$file = scandir($dir);
-$length = count($file_reslut);
+$length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_reslut,"cost time"=>$usetime);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
 }
