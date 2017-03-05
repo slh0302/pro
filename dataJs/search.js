@@ -144,7 +144,7 @@ $(document).ready(function () {
             data:{
                 data:da
             },
-            timeout:5000,    //超时时间
+            timeout:20000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend:function(xhr){
                 $('.loading').fadeIn();
