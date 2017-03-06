@@ -170,6 +170,9 @@ $(document).ready(function () {
                 });
                 $("#search-time").append("<h4>Cost&nbspTime:&nbsp "+data['cost time']+"s </h4>");
                 myViewer.viewer();
+
+
+                $("#li_origin").append("<img src="+data["origin_immg"]+"'>");
             },
             error:function(xhr,textStatus){
                 console.log('错误');

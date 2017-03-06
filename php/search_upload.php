@@ -39,7 +39,7 @@ $base64 =trim($data);
 //echo $base64;
 $img = base64_decode($base64);
 $filename = date('YmdHis') .'.jpg';
-$a = file_put_contents('/var/www/html/pro/searchFile/'. $filename, $img);//保存图片，返回的是字节数
+$a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返回的是字节数
 //print_r($a);
 //Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 if(file_exists("../run/runResult/result.txt")){
