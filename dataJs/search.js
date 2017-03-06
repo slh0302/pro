@@ -173,6 +173,7 @@ $(document).ready(function () {
 
 
                 $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
+                $("#myorigin").viewer();
             },
             error:function(xhr,textStatus){
                 console.log('错误');
