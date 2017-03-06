@@ -67,7 +67,7 @@ $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_immg"=>$origin_file_path);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
 }
