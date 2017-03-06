@@ -83,7 +83,7 @@ $(document).ready(function () {
                         // Bootstrap's Modal
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                        $("#li_origin").html(result);
+                        $("#origin-img-dis").html(result);
                         //$('#getCroppedCanvasModal').modal();
                         // if (!$download.hasClass('disabled')) {
                         //     $download.attr('href', result.toDataURL('image/jpeg'));
