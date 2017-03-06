@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
     $('#af-button').click(function () {
-        $.get("./php/DoCreateDatabase.php",{database:databaseName,filename:status[3]});
+        $.get("./php/createDatabase.php",{database:databaseName,filename:status[3]});
     });
 
     $("#begin-button").click(function() {

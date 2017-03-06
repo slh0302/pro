@@ -7,12 +7,19 @@ $(document).ready(function () {
     var uploadedImageURL;
   //  var $download = $('#download');
     var options = {
+        autoCrop:false,
         aspectRatio: NaN,
         crop: function(e) {
             // Output the result data for cropping image.
         }
     };
+
+    $(Window).resize(function () {
+        $image.cropper("reset");
+    });
+
     $image.cropper(options);
+  //  $image.cropper('clear');
     $('[data-toggle="tooltip"]').tooltip();
 
     if (!$.isFunction(document.createElement('canvas').getContext)) {
