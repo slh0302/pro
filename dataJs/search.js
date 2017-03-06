@@ -83,6 +83,7 @@ $(document).ready(function () {
                         // Bootstrap's Modal
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+                        $("#li_origin").html(result);
                         //$('#getCroppedCanvasModal').modal();
                         // if (!$download.hasClass('disabled')) {
                         //     $download.attr('href', result.toDataURL('image/jpeg'));
@@ -172,8 +173,8 @@ $(document).ready(function () {
                 myViewer.viewer();
 
 
-                $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
-                $("#myorigin").viewer();
+                // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
+                // $("#myorigin").viewer();
             },
             error:function(xhr,textStatus){
                 console.log('错误');
