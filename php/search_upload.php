@@ -63,11 +63,11 @@ if(!dir_is_empty("../run/runResult")) {
 	}
     }
 }
-
+$origin_file_path="../searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_immg"=>$origin_file_path);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
 }
