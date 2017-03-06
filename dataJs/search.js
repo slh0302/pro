@@ -18,6 +18,11 @@ $(document).ready(function () {
         $image.cropper("reset");
     });
 
+    //image picker
+    $("#select_pic").imagepicker();
+    //
+
+
     $image.cropper(options);
   //  $image.cropper('clear');
     $('[data-toggle="tooltip"]').tooltip();
@@ -169,7 +174,7 @@ $(document).ready(function () {
                 $.each(data['img'],function(n,value) {
                     myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
                 });
-                $("#search-time").append("<h4>Cost&nbspTime:&nbsp "+data['cost time']+"s </h4>");
+                $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
                 myViewer.viewer();
 
 

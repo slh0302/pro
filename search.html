@@ -48,7 +48,7 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" href="css/viewer.min.css">
-
+	<link rel="stylesheet" href="css/image-picker.css">
 	<style type="text/css">
 		ul.imglist{ margin:0 auto;overflow:hidden}
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
@@ -80,14 +80,15 @@
 			</ul>
 		</nav>
 
+
 		<div class="fh5co-footer">
-			<p>Writer: Su LiHui</p>
-			<ul>
-				<li><a href="#"><i class="icon-facebook"></i></a></li>
-				<li><a href="#"><i class="icon-twitter"></i></a></li>
-				<li><a href="#"><i class="icon-instagram"></i></a></li>
-				<li><a href="#"><i class="icon-linkedin"></i></a></li>
-			</ul>
+			<p>Copyright PKU</p>
+			<!--<ul>-->
+			<!--<li><a href="#"><i class="icon-facebook"></i></a></li>-->
+			<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
+			<!--<li><a href="#"><i class="icon-instagram"></i></a></li>-->
+			<!--<li><a href="#"><i class="icon-linkedin"></i></a></li>-->
+			<!--</ul>-->
 		</div>
 
 	</aside>
@@ -160,8 +161,8 @@
 						</label>
 					</div>
 				</div>
-				<div class="row" style="margin-top: 20px;text-align: center">
-					<button type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas">
+				<div class="row fh5co-border-bottom" style="margin-top: 20px;text-align: center">
+					<button type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas" style="margin-bottom: 30px">
 						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;getCroppedCanvas&quot;)">
 						  Get Cropped Picture
 						</span>
@@ -169,12 +170,32 @@
 				</div>
 
 			</div>
+			<div class="row " style="margin-top: 50px">
+				<!-- picture picked -->
+				<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+				<select id="select_pic" class="image-picker show-html">
+					<option data-img-src="images/01.png" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
+					<option data-img-src="img/02.png" data-img-alt="Page 2" value="2">  Page 2  </option>
+					<option data-img-src="img/03.png" data-img-alt="Page 3" value="3">  Page 3  </option>
+					<option data-img-src="img/04.png" data-img-alt="Page 4" value="4">  Page 4  </option>
+					<option data-img-src="img/05.png" data-img-alt="Page 5" value="5">  Page 5  </option>
+					<option data-img-src="img/06.png" data-img-alt="Page 6" value="6">  Page 6  </option>
+					<option data-img-src="img/07.png" data-img-alt="Page 7" value="7">  Page 7  </option>
+					<option data-img-src="img/08.png" data-img-alt="Page 8" value="8">  Page 8  </option>
+					<option data-img-src="img/09.png" data-img-alt="Page 9" value="9">  Page 9  </option>
+					<option data-img-src="img/10.png" data-img-alt="Page 10" value="10"> Page 10 </option>
+					<option data-img-src="img/11.png" data-img-alt="Page 11" value="11"> Page 11 </option>
+					<option data-img-src="img/12.png" data-img-alt="Page 12" data-img-class="last" value="12"> Page 12 </option>
+				</select>
+				</div>
+			</div>
+
 		</div>
 
 
 		<div id="searche-result" class="fh5co-narrow-content" style="display:none;">
 			<div class="row animate-box"   data-animate-effect="fadeInLeft">
-				<h1 class="fh5co-heading-colored">Origin Picture:</h1>
+				<h1 class="fh5co-heading-colored">Query Picture</h1>
 				<div id="origin-img-dis"  class="col-sm-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: center">
 					<ul id="myorigin" >
 						<li id="li_origin" style="list-style-type:none;">
@@ -247,6 +268,7 @@
 
 <script src="js/cropper.js"></script>
 <script src="js/viewer-jquery.min.js"></script>
+<script src="js/image-picker.js"></script>
 <!-- MAIN JS -->
 
 <script src="js/main.js"></script>
