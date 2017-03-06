@@ -166,9 +166,9 @@ $(document).ready(function () {
                 //
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
-                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+n+"</span></li>");
+                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
                 });
-                $("#search-time").append("<h4>Cost&nbspTime:&nbsp "+(data['cost time']+1)+"s </h4>");
+                $("#search-time").append("<h4>Cost&nbspTime:&nbsp "+data['cost time']+"s </h4>");
                 myViewer.viewer();
             },
             error:function(xhr,textStatus){
