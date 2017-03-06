@@ -63,7 +63,7 @@ if(!dir_is_empty("../run/runResult")) {
 	}
     }
 }
-$origin_file_path="/var/www/html/pro/searchFile/".$filename;
+$origin_file_path="/searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
