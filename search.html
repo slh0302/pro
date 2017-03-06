@@ -54,6 +54,10 @@
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
 		ul.imglist li img{ display:block; width:220px; height:180px;padding: 10px}
 		ul.imglist li span{ display:block; width:220px; height:35px; line-height:30px;  border-style:solid;border-color: #ffffff; background: #F6F6F6 }
+
+		ul.thumbnails.image_picker_selector{margin-left: 100px}
+		ul.thumbnails.image_picker_selector li{float:left; padding:4px 8px; width:220px;list-style-type:none;}
+		ul.thumbnails.image_picker_selector li img{ display:block; width:220px; height:180px;}
 	</style>
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -104,7 +108,7 @@
 				</div>
 			</div>
 			<div class="docs-buttons" >
-				<div class="row" style="margin-top: 20px;height: 600px">
+				<div class="row" style="margin-top: 20px;height: 500px;">
 					<img style="max-width: 100%" id="image" src="images/back.jpg">
 				</div>
 				<div class="row" style="margin-top: 20px;text-align: center">
@@ -171,21 +175,19 @@
 
 			</div>
 			<div class="row " style="margin-top: 50px">
+				<div class="row">
+					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+						<h2 >Example Images</h2>
+					</div>
+				</div>
 				<!-- picture picked -->
-				<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+				<div class="col-md-12 animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft" style="text-align: center">
 				<select id="select_pic" class="image-picker show-html">
-					<option data-img-src="images/01.png" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
-					<option data-img-src="img/02.png" data-img-alt="Page 2" value="2">  Page 2  </option>
-					<option data-img-src="img/03.png" data-img-alt="Page 3" value="3">  Page 3  </option>
-					<option data-img-src="img/04.png" data-img-alt="Page 4" value="4">  Page 4  </option>
-					<option data-img-src="img/05.png" data-img-alt="Page 5" value="5">  Page 5  </option>
-					<option data-img-src="img/06.png" data-img-alt="Page 6" value="6">  Page 6  </option>
-					<option data-img-src="img/07.png" data-img-alt="Page 7" value="7">  Page 7  </option>
-					<option data-img-src="img/08.png" data-img-alt="Page 8" value="8">  Page 8  </option>
-					<option data-img-src="img/09.png" data-img-alt="Page 9" value="9">  Page 9  </option>
-					<option data-img-src="img/10.png" data-img-alt="Page 10" value="10"> Page 10 </option>
-					<option data-img-src="img/11.png" data-img-alt="Page 11" value="11"> Page 11 </option>
-					<option data-img-src="img/12.png" data-img-alt="Page 12" data-img-class="last" value="12"> Page 12 </option>
+					<option data-img-src="./images/choose/1.jpg" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
+					<option data-img-src="./images/choose/5.jpg" data-img-alt="Page 5" value="5">  Page 5  </option>
+					<option data-img-src="./images/choose/7.jpg" data-img-alt="Page 7" value="7">  Page 7  </option>
+					<option data-img-src="./images/choose/11.jpg" data-img-alt="Page 11" value="11"> Page 11 </option>
+					<option data-img-src="./images/choose/12.jpg" data-img-alt="Page 12" data-img-class="last" value="12"> Page 12 </option>
 				</select>
 				</div>
 			</div>

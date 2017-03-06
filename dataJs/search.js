@@ -19,7 +19,13 @@ $(document).ready(function () {
     });
 
     //image picker
-    $("#select_pic").imagepicker();
+    $("#select_pic").imagepicker({
+        clicked:function (data) {
+            var src_path=data['node'].children().children().attr('src');
+            console.log(data['node'].children().children().attr('src'));
+            $image.cropper('destroy').attr('src', src_path).cropper(options);
+        }
+    });
     //
 
 
