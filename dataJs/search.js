@@ -18,7 +18,7 @@ $(document).ready(function () {
         $image.cropper("reset");
     });
 
-    //image picker
+    //image picker choose
     $("#select_pic").imagepicker({
         clicked:function (data) {
             var src_path=data['node'].children().children().attr('src');
@@ -201,8 +201,4 @@ $(document).ready(function () {
         //     alert(data);
         // });
     });
-
-
-
-
 });
