@@ -35,6 +35,8 @@ if (mysqli_connect_errno()) {
 $page = 0 ;
 $pageSize = 3;
 $filename="";
+$results="";
+
 if(!is_null($_GET["database"])) {
     $database = $_GET["database"];
 }
@@ -42,37 +44,43 @@ if(!is_null($_GET["database"])) {
 if(!is_null($_GET["filename"])) {
     $filename = $_GET["filename"];
 }
+//echo $database, $filename;
+$str="Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ". "`name` varchar(20) DEFAULT NULL ,  Location varchar(30) DEFAULT NULL, PRIMARY KEY (id))";
+//echo $str;
+$mysqli->query($str);
 
-$mysqli->query("Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ".
-    "`name` varchar(20) DEFAULT NULL ,  Location varchar(30) DEFAULT NULL, PRIMARY KEY (id))");
-
-/// insert data into database
-/// Cpp write by su and os define judge
-/// os judge
+// insert data into database
+// Cpp write by su and os define judge
+// os judge
 //linux :g++ LoadToDatabase.cpp -o LoadToDatabase `mysql_config --cflags --libs`
 $os_info=php_uname('a');
-$os=split(' ',$os_info);
+$os=explode(' ',$os_info);
 $fileLocation_w=dirname(__FILE__) . "\\FileList\\" . basename($filename);
 $fileLocation_l=dirname(__FILE__) . "/FileList/" . basename($filename);
-//
 $str_windows="../run/upload/windows/makefilelist.exe   ". $fileLocation_w . " " . $database;
 $str_linux="../run/upload/linux/LoadToDatabase ". $fileLocation_l . " " . $database;
-
 if($os[0] == "Windows"){
-    //echo $str_windows;
+  //  echo $str_windows;
     $results=my_exec($str_windows);
 }else if($os[0] == "Linux"){
-    echo "test linux";
-    $results=my_exec($str_linux);
+   // echo "test linux";
+    $results=exec($str_linux);
 }
-$array=split(' ',$results['stdout']);
-print_r($results);
+
+$array=explode(' ',$results);
 if($array[0] == "SUCCESS"){
-    echo "SUCCESS";
+    $count=$array[1];
+    // create information
+    $str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready');";
+    $mysqli->query($str);
+
+    //handle process
+
+    
+    echo $array[1];
 }else{
     echo "Fail";
 }
 
-// create information
-//$str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation . "', '".$count."', 'ready');";
-//$mysqli->query($str);
+
+?>
