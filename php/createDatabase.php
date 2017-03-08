@@ -25,7 +25,7 @@ function my_exec($cmd, $input='')
 
 
 header('Content-Type: application/json');
-
+$input = filter_input_array(INPUT_POST);
 $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'test');
 
 if (mysqli_connect_errno()) {
@@ -37,12 +37,12 @@ $pageSize = 3;
 $filename="";
 $results="";
 
-if(!is_null($_GET["database"])) {
-    $database = $_GET["database"];
+if(!is_null($input["database"])) {
+    $database = $input["database"];
 }
 
-if(!is_null($_GET["filename"])) {
-    $filename = $_GET["filename"];
+if(!is_null($input["filename"])) {
+    $filename = $input["filename"];
 }
 //echo $database, $filename;
 $str="Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ". "`name` varchar(20) DEFAULT NULL ,  Location varchar(30) DEFAULT NULL, PRIMARY KEY (id))";
@@ -52,7 +52,7 @@ $mysqli->query($str);
 // insert data into database
 // Cpp write by su and os define judge
 // os judge
-//linux :g++ LoadToDatabase.cpp -o LoadToDatabase `mysql_config --cflags --libs`
+//linux : g++ LoadToDatabase.cpp -o LoadToDatabase `mysql_config --cflags --libs`
 $os_info=php_uname('a');
 $os=explode(' ',$os_info);
 $fileLocation_w=dirname(__FILE__) . "\\FileList\\" . basename($filename);
@@ -73,14 +73,19 @@ if($array[0] == "SUCCESS"){
     // create information
     $str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready');";
     $mysqli->query($str);
-
+    // program by data
+   /// system("../run/upload/Upload  ". $fileLocation_l . " /home/slh/data/ " . $count . " /home/slh/database/".basename($filename)."_base " . $database ." > /home/slh/log/upload.log &");
+    $returndata=array(
+                    "msg"=>"SUCCESS",
+                    "filelist"=>$fileLocation_l
+                );
     //handle process
-
-    
-    echo $array[1];
+    echo json_encode($returndata);
 }else{
-    echo "Fail";
+    $returndata=array(
+        "msg"=>"FAIL"
+    );
+    echo json_encode($returndata);
 }
-
 
 ?>

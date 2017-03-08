@@ -37,7 +37,26 @@ $(document).ready(function () {
     }
 
     $('#af-button').click(function () {
-        $.get("./php/createDatabase.php",{database:databaseName,filename:status[3]});
+        $.ajax({
+            url:'./php/createDatabase.php',
+            type:'POST', //GET
+            data: {
+                database:databaseName,
+                filename:status[3]
+            },
+            timeout:20000,    //超时时间
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend:function(xhr){
+
+            },
+            success:function(data,textStatus,jqXHR){
+
+            },
+            complete:function(){
+
+            }
+        });
+
     });
 
     $("#begin-button").click(function() {
