@@ -2,3 +2,4 @@ searchFile/
 .idea/
 run/runResult/*
 php/FileList/*
+run/test.sh
