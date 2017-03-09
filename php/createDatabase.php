@@ -74,7 +74,7 @@ if($array[0] == "SUCCESS"){
     $str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready');";
     $mysqli->query($str);
     // program by data
-   /// system("../run/upload/Upload  ". $fileLocation_l . " /home/slh/data/ " . $count . " /home/slh/database/".basename($filename)."_base " . $database ." > /home/slh/log/upload.log &");
+    system("../run/upload/Upload  ". $fileLocation_l . " /home/saltedfish/data/ " . $count . " /home/saltedfish/database/".basename($filename)."_base " . $database ." > /home/saltedfish/log/upload.log &");
     $returndata=array(
                     "msg"=>"SUCCESS",
                     "filelist"=>$fileLocation_l
