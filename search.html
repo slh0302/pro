@@ -11,10 +11,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-
-
-
-
 	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -49,6 +45,8 @@
 	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" href="css/viewer.min.css">
 	<link rel="stylesheet" href="css/image-picker.css">
+
+	<link rel="stylesheet" href="css/checkbox-11.css">
 	<style type="text/css">
 		ul.imglist{ margin:0 auto;overflow:hidden}
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
@@ -111,15 +109,16 @@
 				<div class="row" style="margin-top: 20px;height: 500px;">
 					<img style="max-width: 100%" id="image" src="images/back.jpg">
 				</div>
+
 				<div class="row" style="margin-top: 20px;text-align: center">
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Move the picture">
 						  <span class="fa fa-arrows"></span>
 						</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Crop the picture">
 						  <span class="fa fa-crop"></span>
 						</span>
 						</button>
@@ -127,12 +126,12 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Zoom In">
 							  <span class="fa fa-search-plus"></span>
 							</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Zoom Out">
 							  <span class="fa fa-search-minus"></span>
 							</span>
 						</button>
@@ -140,12 +139,12 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="crop" title="Crop">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;crop&quot;)">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Crop Initialization">
 							  <span class="fa fa-check"></span>
 							</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="clear" title="Clear">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;clear&quot;)">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Clear">
 							  <span class="fa fa-remove"></span>
 							</span>
 						</button>
@@ -153,35 +152,44 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="reset" title="Reset">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;reset&quot;)">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Reset">
 							  <span class="fa fa-refresh"></span>
 							</span>
 						</button>
 						<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
 							<input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Import image with Blob URLs">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Import picture data">
 							 <span class="fa fa-upload"></span>
 							</span>
 						</label>
 					</div>
 				</div>
 				<div class="row fh5co-border-bottom" style="margin-top: 20px;text-align: center">
-					<button type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas" style="margin-bottom: 30px">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="$().cropper(&quot;getCroppedCanvas&quot;)">
+					<button id="btn-crop" type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas" style="margin-bottom: 30px">
+						<span id="span-crop" class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Go Search">
 						  Get Cropped Picture
 						</span>
 					</button>
+					<button id="btn-detect" type="button" class="btn btn-primary btn-outline" data-method="getDetect" style="margin-bottom: 30px;display: none">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Go Check">
+						  Check Picture
+						</span>
+					</button>
+					<input type="checkbox" id="checkbox-11-2"  />
+					<label for="checkbox-11-2" style="margin-left:20px;margin-bottom: 4px;font-size: 62.5%"></label>
 				</div>
 
 			</div>
-			<div class="row " style="margin-top: 50px">
+
+
+			<div  id="pic-picked" class="row " style="margin-top: 50px">
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 						<h2 >Example Images</h2>
 					</div>
 				</div>
 				<!-- picture picked -->
-				<div class="col-md-12 animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft" style="text-align: center">
+				<div  class="col-md-12 animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft" style="text-align: center">
 				<select id="select_pic" class="image-picker show-html">
 					<option data-img-src="./images/choose/1.jpg" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
 					<option data-img-src="./images/choose/5.jpg" data-img-alt="Page 5" value="5">  Page 5  </option>
@@ -192,6 +200,31 @@
 				</div>
 			</div>
 
+			<div  id="pic-detect" class="row " style="margin-top: 20px;display: block" >
+				<div class="row">
+					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+						<h2 >Detected Images</h2>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 20px;height: 500px;text-align: center">
+					<img style="max-width: 100%" id="image-detect" src="">
+				</div>
+				<!-- picture picked -->
+				<div  class="col-md-12 animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft" style="text-align: center">
+					<select id="detect_pic" class="image-picker show-html" style="margin-bottom: 20px">
+						<option data-img-src="./images/choose/1.jpg" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
+						<option data-img-src="./images/choose/5.jpg" data-img-alt="Page 5" value="5">  Page 5  </option>
+						<option data-img-src="./images/choose/7.jpg" data-img-alt="Page 7" value="7">  Page 7  </option>
+						<option data-img-src="./images/choose/11.jpg" data-img-alt="Page 11" value="11"> Page 11 </option>
+						<option data-img-src="./images/choose/12.jpg" data-img-alt="Page 12" data-img-class="last" value="12"> Page 12 </option>
+					</select>
+				</div>
+				<div class="row"  style="text-align: center">
+					<button id="btn-submit" type="button" class="btn btn-primary btn-outline animate-box" data-animate-effect="fadeInLeft" style="margin-top: 30px">
+						Search Picture
+					</button>
+				</div>
+			</div>
 		</div>
 
 
@@ -201,7 +234,6 @@
 				<div id="origin-img-dis"  class="col-sm-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: center">
 					<ul id="myorigin" >
 						<li id="li_origin" style="list-style-type:none;">
-
 						</li>
 					</ul>
 				</div>
