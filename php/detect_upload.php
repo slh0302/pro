@@ -15,7 +15,7 @@ $base64 =trim($data);
 $img = base64_decode($base64);
 $filename = date('YmdHis') .'.jpg';
 $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返回的是字节数
-
+///modify
 if(file_exists("../run/runResult/detect.txt")){
     unlink("../run/runResult/detect.txt");
 }
@@ -25,23 +25,32 @@ $execString="../run/search/DoDetect.sh  "."/var/www/html/pro/searchFile/". $file
 $results=exec($execString);
 $file_result=array();
 $usetime="";
-if(!dir_is_empty("../run/runResult")) {
-    if($myfile = fopen("../run/runResult/detect.txt", "r") or die("Unable to open file!")){
-
-        $total_pic =fgets($myfile);
-        while(!feof($myfile)) {
-            $path = fgets($myfile);
-            if($path != ""){
-                array_push($file_result,$path);
+$file_detected="";
+$dir = "../run/runResult/";
+$dir_target = "./run/runResult";
+$total =0;
+// Open a known directory, and proceed to read its contents
+if (is_dir($dir)) {
+    if ($dh = opendir($dir)) {
+        while (($path = readdir($dh)) !== false) {
+            if(filetype($dir . $path) != "dir"){
+                $total++;
+                if($path == $filename ) $file_detected = $dir_target.$path;
+                else{
+                    array_push($file_result,$dir_target . $path);
+                }
             }
         }
+        closedir($dh);
     }
 }
+
+
 //$origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"origin_total"=>$total_pic);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"origin_pic"=>$file_detected,"count"=>$total);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
 }
