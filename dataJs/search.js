@@ -32,17 +32,15 @@ $(document).ready(function () {
     var $checkbox= $("#checkbox-11-2");
     var $btn_crop= $("#btn-crop");
     var $btn_detect=$("#btn-detect");
-    var $display= $("#pic-picked");
     $checkbox.change(function() {
         if($checkbox.is(':checked')){
             $btn_crop.css("display","none");
             $btn_detect.css("display","inline");
-            $display.css("display","none");
+
             //data-original-title
         }else{
             $btn_crop.css("display","inline");
             $btn_detect.css("display","none");
-            $display.css("display","block");
         }
     });
 
@@ -131,15 +129,27 @@ $(document).ready(function () {
                             timeout:20000,    //超时时间
                             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                             beforeSend:function(xhr){
+                                $("#pic-picked").css("display","none");
+                                //loading 特效
                           //      $('.loading ').fadeIn();
                             },
-                            success:function(data,textStatus,jqXHR){
-
+                            success:function(data){
+                                var last=data['count'];
+                                $("#image-detect").attr("src", data['origin_pic']);
+                                var $my_select=$('#detect_pic');
+                                $.each(data['img'],function(n,value) {
+                                    if(n==0){
+                                        $my_select.append("<option data-img-src='"+value+"' data-img-class='first' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                                    }else if(n==last-1){
+                                        $my_select.append("<option data-img-src='"+value+"' data-img-class='last' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                                    }else $my_select.append("<option data-img-src='"+value+"' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                                });
                             },
                             error:function(xhr,textStatus){
                             },
                             complete:function(){
                              //   $('.loading').fadeOut();
+                                $("#detect_pic").imagepicker();
                                 console.log('结束');
                             }
                         });
@@ -224,8 +234,6 @@ $(document).ready(function () {
                 });
                 $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
                 myViewer.viewer();
-
-
                 // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
                 // $("#myorigin").viewer();
             },
