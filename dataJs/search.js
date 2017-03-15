@@ -27,6 +27,24 @@ $(document).ready(function () {
         }
     });
     //
+    //checkbox change
+   // alert($('#checkbox-id').is(':checked'));
+    var $checkbox= $("#checkbox-11-2");
+    var $btn_crop= $("#btn-crop");
+    var $btn_detect=$("#btn-detect");
+    var $display= $("#pic-picked");
+    $checkbox.change(function() {
+        if($checkbox.is(':checked')){
+            $btn_crop.css("display","none");
+            $btn_detect.css("display","inline");
+            $display.css("display","none");
+            //data-original-title
+        }else{
+            $btn_crop.css("display","inline");
+            $btn_detect.css("display","none");
+            $display.css("display","block");
+        }
+    });
 
 
     $image.cropper(options);
@@ -44,8 +62,6 @@ $(document).ready(function () {
     // if (typeof $download[0].download === 'undefined') {
     //     $download.addClass('disabled');
     // }
-
-
     // Methods
     $('.docs-buttons').on('click', '[data-method]', function () {
         var $this = $(this);
@@ -75,13 +91,15 @@ $(document).ready(function () {
             if (data.method === 'rotate') {
                 $image.cropper('clear');
             }
-
-            result = $image.cropper(data.method, data.option, data.secondOption);
+            if(data.method === 'getDetect' ) {
+                result = $image.cropper('getCroppedCanvas', data.option, data.secondOption);
+            }else{
+                result = $image.cropper(data.method , data.option, data.secondOption);
+            }
 
             if (data.method === 'rotate') {
                 $image.cropper('crop');
             }
-
             switch (data.method) {
                 case 'scaleX':
                 case 'scaleY':
@@ -95,14 +113,38 @@ $(document).ready(function () {
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
                         $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+result.toDataURL('image/jpeg')+">");
-                        //$('#getCroppedCanvasModal').modal();
-                        // if (!$download.hasClass('disabled')) {
-                        //     $download.attr('href', result.toDataURL('image/jpeg'));
-                        // }
-                    }
 
+                    }
                     break;
 
+                case 'getDetect':
+                    if (result) {
+                        console.info(result);
+                        da=result.toDataURL('image/jpeg').split(';')[1].split(',')[1];
+                       // $('#crop-pic').val(result.toDataURL('image/jpeg'));
+                        $.ajax({
+                            url:'./php/detect_upload.php',
+                            type:'POST', //GET
+                            data:{
+                                data:da
+                            },
+                            timeout:20000,    //超时时间
+                            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                            beforeSend:function(xhr){
+                          //      $('.loading ').fadeIn();
+                            },
+                            success:function(data,textStatus,jqXHR){
+
+                            },
+                            error:function(xhr,textStatus){
+                            },
+                            complete:function(){
+                             //   $('.loading').fadeOut();
+                                console.log('结束');
+                            }
+                        });
+                    }
+                    break;
             }
 
             if ($.isPlainObject(result) && $target) {

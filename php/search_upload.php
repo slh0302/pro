@@ -47,15 +47,15 @@ if(file_exists("../run/runResult/result.txt")){
 }
 //exec 执行
 $execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
-//echo $execString;
+//echo $execString;$results=my_exec($execString);
 $results=exec($execString);
 $file_result=array();
 $usetime="";
 if(!dir_is_empty("../run/runResult")) {
-
    if($myfile = fopen("../run/runResult/result.txt", "r") or die("Unable to open file!")){
+		
         $usetime =fgets($myfile);
-        while(!feof($myfile)) {
+		while(!feof($myfile)) {
             $path = fgets($myfile);
             if($path != ""){
 	    	array_push($file_result,$path);

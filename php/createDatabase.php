@@ -45,7 +45,7 @@ if(!is_null($input["filename"])) {
     $filename = $input["filename"];
 }
 //echo $database, $filename;
-$str="Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ". "`name` varchar(20) DEFAULT NULL ,  Location varchar(30) DEFAULT NULL, PRIMARY KEY (id))";
+$str="Create Table ". $database . " ( id int(11) NOT NULL AUTO_INCREMENT, ". "`name` varchar(20) DEFAULT NULL ,  Location varchar(80) DEFAULT NULL, PRIMARY KEY (id))";
 //echo $str;
 $mysqli->query($str);
 
@@ -66,7 +66,7 @@ if($os[0] == "Windows"){
    // echo "test linux";
     $results=exec($str_linux);
 }
-
+//cout << "SUCCESS "<<num<< " "<<fileout<<" "<<filepath;
 $array=explode(' ',$results);
 if($array[0] == "SUCCESS"){
     $count=$array[1];
@@ -74,10 +74,13 @@ if($array[0] == "SUCCESS"){
     $str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready');";
     $mysqli->query($str);
     // program by data
-   /// system("../run/upload/Upload  ". $fileLocation_l . " /home/slh/data/ " . $count . " /home/slh/database/".basename($filename)."_base " . $database ." > /home/slh/log/upload.log &");
+	$text="../run/upload/Upload  ". $array[2] . "  " . $array[3] ."  " . $count . " /home/slh/database/".basename($filename)."_base " . $database ." > /home/slh/log/upload.log &";
+    exec($text);
     $returndata=array(
                     "msg"=>"SUCCESS",
-                    "filelist"=>$fileLocation_l
+                    "filelist"=>$fileLocation_l,
+					"re"=>$array,
+					"text"=>$text
                 );
     //handle process
     echo json_encode($returndata);

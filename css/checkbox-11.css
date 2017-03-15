@@ -1,0 +1,97 @@
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    cursor: pointer;
+    font-size: 1em;
+}
+/* ==================================================================== */
+/* CHECKBOX TYPE 11 ---------------------------------------------------- */
+/* ==================================================================== */
+
+
+[id^="checkbox-11-"] + label {
+    background-color: #FFF;
+    padding: 11px 9px;
+    border-radius: 7px;
+    display: inline-block;
+    position: relative;
+    margin-right: 30px;
+    background: #88c756;
+    width: 90px;
+    height: 35px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 0 0 10px rgba(245, 146, 146, 0.4);
+}
+
+[id^="checkbox-11-"] + label:before {
+    content: ' ';
+    position: absolute;
+    background: #FFF;
+    top: 0px;
+    z-index: 99999;
+    left: 0px;
+    width: 24px;
+    color: #FFF;
+    height: 35px;
+    border-radius: 7px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.6);
+}
+
+[id^="checkbox-11-"] + label:after {
+    content: 'Manual';
+    position: absolute;
+    top: 7px;
+    left: 37px;
+    font-size: 1.2em;
+    color: white;
+    font-weight: bold;
+    left: 8px;
+    padding-top: 1px;
+    padding-right: 10px;
+    line-height:2rem;
+    text-align:center;
+    top: 4px;
+    border-radius: 100px;
+}
+
+[id^="checkbox-11-"]:checked + label {
+    background: #df6564;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 0 0 10px rgba(146, 196, 245, 0.4);
+}
+
+[id^="checkbox-11-"]:checked + label:after {
+    padding-right: 0px;
+    padding-left: 5px;
+    content: 'Auto';
+    left: 15px;
+}
+
+[id^="checkbox-11-"]:checked + label:before {
+    content: ' ';
+    position: absolute;
+    z-index: 99999;
+    left: 68px;
+}
+
+
+[id^="checkbox-11-"] + label:after {
+    left: 30px;
+}
+
+#checkbox-11-3 + label:before {
+    width: 21px;
+    height: 22px;
+    top: 3px;
+    left: 3px;
+}
+
+#checkbox-11-3:checked + label:before {
+    left: 49px;
+}
+
+#checkbox-11-2 + label:after, #checkbox-11-2 + label:before, #checkbox label {
+    -webkit-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+}
