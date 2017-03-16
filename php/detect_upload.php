@@ -5,7 +5,21 @@
  * Date: 2017/3/14
  * Time: 20:27
  */
+function deleteAll($path) {
+    $op = dir($path);
+    while(false != ($item = $op->read())) {
+        if($item == '.' || $item == '..') {
+            continue;
+        }
+        if(is_dir($op->path.'/'.$item)) {
+            deleteAll($op->path.'/'.$item);
+            rmdir($op->path.'/'.$item);
+        } else {
+            unlink($op->path.'/'.$item);
+        }
 
+    }
+}
 $input = filter_input_array(INPUT_POST);
 
 $data=$input['data'];
@@ -16,9 +30,11 @@ $img = base64_decode($base64);
 $filename = date('YmdHis') .'.jpg';
 $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返回的是字节数
 ///modify
-if(file_exists("../run/runResult/detect.txt")){
-    unlink("../run/runResult/detect.txt");
-}
+//if(file_exists("../run/runResult/detect.txt")){
+//    delFile("../run/runResult/detect.txt");
+//}
+deleteAll("../run/runResult/");
+
 //exec 执行
 $execString="../run/search/DoDetect.sh  "."/var/www/html/pro/searchFile/". $filename;
 //echo $execString;$results=my_exec($execString);
@@ -27,7 +43,7 @@ $file_result=array();
 $usetime="";
 $file_detected="";
 $dir = "../run/runResult/";
-$dir_target = "./run/runResult";
+$dir_target = "./run/runResult/";
 $total =0;
 // Open a known directory, and proceed to read its contents
 if (is_dir($dir)) {

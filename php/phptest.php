@@ -1,14 +1,21 @@
 <?php
 $dir = "../searchFile/";
 // Open a known directory, and proceed to read its contents
-if (is_dir($dir)) {
-    if ($dh = opendir($dir)) {
-        while (($file = readdir($dh)) !== false) {
-            if(filetype($dir . $file) != "dir"){
-                echo "filename: $file : filetype: " . filetype($dir . $file) . "\n";
-            }
+function deleteAll($path) {
+    $op = dir($path);
+    while(false != ($item = $op->read())) {
+        if($item == '.' || $item == '..') {
+            continue;
         }
-        closedir($dh);
+        if(is_dir($op->path.'/'.$item)) {
+            deleteAll($op->path.'/'.$item);
+            rmdir($op->path.'/'.$item);
+        } else {
+            unlink($op->path.'/'.$item);
+        }
+
     }
 }
+
+deleteAll($dir);
 ?>
