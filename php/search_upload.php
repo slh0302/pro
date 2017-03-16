@@ -50,8 +50,10 @@ if($isDetect=="false") {
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
     $execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
 }else{
-    $filename = $input['data'];
-    $execString="../run/search/DoSearch.sh  ". $filename;
+
+    $filename =  basename($input['data']);;
+//	echo $filename;
+    $execString="../run/search/DoSearch.sh  ". "/home/slh/pro/run/runResult/".$filename;
     $a="0";
 }
 //print_r($a);
@@ -62,7 +64,8 @@ if(file_exists("../run/runResult/result.txt")){
 //exec 执行
 
 //echo $execString;$results=my_exec($execString);
-$results=exec($execString);
+$results=my_exec($execString);
+//echo $results;
 $file_result=array();
 $usetime="";
 if(!dir_is_empty("../run/runResult")) {
