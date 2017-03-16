@@ -278,7 +278,8 @@ $(document).ready(function () {
         var $li_origin=$("#li_origin");
         $li_origin.empty();
         $li_origin.append("<img style='max-width: 100%' id='imagei' src="+detectImageURL+">");
-        $('#pic-detect').css("display","none");
+        $("#searche-target").css('display','none');
+		$('#pic-detect').css("display","none");
         $("#searche-result").css('display','block');
         da=detectImageURL;
         $.ajax({
