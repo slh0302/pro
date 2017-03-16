@@ -107,11 +107,13 @@ $(document).ready(function () {
 
                 case 'getCroppedCanvas':
                     if (result) {
+                        var $li_origin=$("#li_origin");
                         console.info(result);
                         // Bootstrap's Modal
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                        $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+result.toDataURL('image/jpeg')+">");
+                        $li_origin.empty();
+                        $li_origin.append("<img style='max-width: 100%' id='imagei' src="+result.toDataURL('image/jpeg')+">");
 
                     }
                     break;
@@ -273,6 +275,9 @@ $(document).ready(function () {
 
     $("#btn-submit").click(function () {
     //$.get('./php/search_upload.php');
+        var $li_origin=$("#li_origin");
+        $li_origin.empty();
+        $li_origin.append("<img style='max-width: 100%' id='imagei' src="+detectImageURL+">");
         $('#pic-detect').css("display","none");
         $("#searche-result").css('display','block');
         da=detectImageURL;
