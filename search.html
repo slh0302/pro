@@ -100,11 +100,14 @@
 
 
 		<div id="searche-target" class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
+
 			<div class="row">
 				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 					<h1 class="fh5co-heading">Search Images</h1>
 				</div>
 			</div>
+			<div id="show-main">
+
 			<div class="docs-buttons" >
 				<div class="row" style="margin-top: 20px;height: 500px;">
 					<img style="max-width: 100%" id="image" src="images/back.jpg">
@@ -181,7 +184,7 @@
 
 			</div>
 
-
+			</div>
 			<div  id="pic-picked" class="row " style="margin-top: 50px">
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
@@ -200,10 +203,11 @@
 				</div>
 			</div>
 
-			<div  id="pic-detect" class="row " style="margin-top: 20px;display: block" >
+			<div  id="pic-detect" class="row " style="margin-top: 20px;display: none" >
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 						<h2 >Detected Images</h2>
+						<div id="detect-load" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 20px;height: 500px;text-align: center">

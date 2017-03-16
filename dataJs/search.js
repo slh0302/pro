@@ -130,8 +130,10 @@ $(document).ready(function () {
                             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                             beforeSend:function(xhr){
                                 $("#pic-picked").css("display","none");
+                                $("#show-main").css("display","none");
+                                $("#pic-detect").css("display","block");
                                 //loading 特效
-                          //      $('.loading ').fadeIn();
+                                $('#detect-load').fadeIn();
                             },
                             success:function(data){
                                 var last=data['count'];
@@ -149,6 +151,7 @@ $(document).ready(function () {
                             },
                             complete:function(){
                              //   $('.loading').fadeOut();
+                                $('#detect-load').fadeOut();
                                 $("#detect_pic").imagepicker();
                                 console.log('结束');
                             }
