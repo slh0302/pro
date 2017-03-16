@@ -134,11 +134,13 @@ $(document).ready(function () {
                                 $("#pic-detect").css("display","block");
                                 //loading 特效
                                 $('#detect-load').fadeIn();
+                                $('#btn-submit').attr("disabled", true);
                             },
                             success:function(data){
                                 var last=data['count'];
                                 $("#image-detect").attr("src", data['origin_pic']);
                                 var $my_select=$('#detect_pic');
+                                $my_select.css("display","inline");
                                 $.each(data['img'],function(n,value) {
                                     if(n==0){
                                         $my_select.append("<option data-img-src='"+value+"' data-img-class='first' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
@@ -153,6 +155,7 @@ $(document).ready(function () {
                              //   $('.loading').fadeOut();
                                 $('#detect-load').fadeOut();
                                 $("#detect_pic").imagepicker();
+                                $('#btn-submit').attr("disabled", false);
                                 console.log('结束');
                             }
                         });
