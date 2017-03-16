@@ -20,6 +20,22 @@ function deleteAll($path) {
 
     }
 }
+function my_exec($cmd, $input='')
+{
+    $proc = proc_open($cmd, array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
+    fwrite($pipes[0], $input);
+    fclose($pipes[0]);
+    $stdout = stream_get_contents($pipes[1]);
+    fclose($pipes[1]);
+    $stderr = stream_get_contents($pipes[2]);
+    fclose($pipes[2]);
+    $rtn = proc_close($proc);
+    return array('stdout' => $stdout,
+        'stderr' => $stderr,
+        'return' => $rtn
+    );
+}
+
 $input = filter_input_array(INPUT_POST);
 
 $data=$input['data'];
@@ -38,7 +54,7 @@ deleteAll("../run/runResult/");
 //exec 执行
 $execString="../run/search/DoDetect.sh  "."/var/www/html/pro/searchFile/". $filename;
 //echo $execString;$results=my_exec($execString);
-$results=exec($execString);
+$results=my_exec($execString);
 $file_result=array();
 $usetime="";
 $file_detected="";
