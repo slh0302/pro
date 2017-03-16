@@ -52,9 +52,9 @@ $a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返�
 deleteAll("../run/runResult/");
 
 //exec 执行
-$execString="../run/search/DoDetect.sh  "."/var/www/html/pro/searchFile/". $filename;
-//echo $execString;$results=my_exec($execString);
-$results=my_exec($execString);
+$execString="../run/search/DoDetect.sh "."/home/slh/pro/searchFile/". $filename;
+//echo $execString;//$results=my_exec($execString);
+$results=exec($execString);
 $file_result=array();
 $usetime="";
 $file_detected="";
