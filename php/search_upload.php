@@ -39,7 +39,7 @@ $execString="";
 
 
 $isDetect=$input['isDetect'];
-echo $isDetect;
+//echo $isDetect;
 if($isDetect=="false") {
     $data = $input['data'];
   //  echo $data;
