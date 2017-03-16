@@ -33,20 +33,34 @@ function my_exec($cmd, $input='')
 
 $input = filter_input_array(INPUT_POST);
 
-$data=$input['data'];
-//echo $data;
-$base64 =trim($data);
+$filename="";
+$a="";
+$execString="";
+
+
+$isDetect=$input['isDetect'];
+echo $isDetect;
+if($isDetect=="false") {
+    $data = $input['data'];
+  //  echo $data;
+    $base64 = trim($data);
 //echo $base64;
-$img = base64_decode($base64);
-$filename = date('YmdHis') .'.jpg';
-$a = file_put_contents('../searchFile/'. $filename, $img);//保存图片，返回的是字节数
+    $img = base64_decode($base64);
+    $filename = date('YmdHis') . '.jpg';
+    $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
+    $execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
+}else{
+    $filename = $input['data'];
+    $execString="../run/search/DoSearch.sh  ". $filename;
+    $a="0";
+}
 //print_r($a);
 //Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 if(file_exists("../run/runResult/result.txt")){
 	unlink("../run/runResult/result.txt");
 }
 //exec 执行
-$execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
+
 //echo $execString;$results=my_exec($execString);
 $results=exec($execString);
 $file_result=array();

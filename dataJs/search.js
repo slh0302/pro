@@ -5,6 +5,7 @@ $(document).ready(function () {
     var $image = $('#image');
     var originalImageURL = $image.attr('src');
     var uploadedImageURL;
+    var detectImageURL;
   //  var $download = $('#download');
     var options = {
         autoCrop:false,
@@ -22,7 +23,7 @@ $(document).ready(function () {
     $("#select_pic").imagepicker({
         clicked:function (data) {
             var src_path=data['node'].children().children().attr('src');
-            console.log(data['node'].children().children().attr('src'));
+            console.log(data['node'][0]);
             $image.cropper('destroy').attr('src', src_path).cropper(options);
         }
     });
@@ -134,6 +135,7 @@ $(document).ready(function () {
                                 $("#pic-detect").css("display","block");
                                 //loading 特效
                                 $('#detect-load').fadeIn();
+                                $('#detect-h2').fadeIn();
                                 $('#btn-submit').attr("disabled", true);
                             },
                             success:function(data){
@@ -143,6 +145,7 @@ $(document).ready(function () {
                                 $my_select.css("display","inline");
                                 $.each(data['img'],function(n,value) {
                                     if(n==0){
+                                        detectImageURL=value;
                                         $my_select.append("<option data-img-src='"+value+"' data-img-class='first' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
                                     }else if(n==last-1){
                                         $my_select.append("<option data-img-src='"+value+"' data-img-class='last' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
@@ -154,7 +157,14 @@ $(document).ready(function () {
                             complete:function(){
                              //   $('.loading').fadeOut();
                                 $('#detect-load').fadeOut();
-                                $("#detect_pic").imagepicker();
+                                $('#detect-h2').fadeOut();
+                                $("#detect_pic").imagepicker({
+                                    clicked:function (data) {
+                                        var src_path=data['node'].children().children().attr('src');
+                                        console.log(data['node'][0]);
+                                        detectImageURL=src_path;
+                                    }
+                                });
                                 $('#btn-submit').attr("disabled", false);
                                 console.log('结束');
                             }
@@ -221,11 +231,13 @@ $(document).ready(function () {
             url:'./php/search_upload.php',
             type:'POST', //GET
             data:{
-                data:da
+                data:da,
+                isDetect:false
             },
             timeout:20000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend:function(xhr){
+
                 $('.loading').fadeIn();
 
                 console.log(xhr);
@@ -256,5 +268,49 @@ $(document).ready(function () {
         // $.post("./php/search_upload.php",{data:da},function (data) {
         //     alert(data);
         // });
+    });
+
+
+    $("#btn-submit").click(function () {
+    //$.get('./php/search_upload.php');
+        $('#pic-detect').css("display","none");
+        $("#searche-result").css('display','block');
+        da=detectImageURL;
+        $.ajax({
+            url:'./php/search_upload.php',
+            type:'POST', //GET
+            data:{
+                data:da,
+                isDetect:true
+            },
+            timeout:20000,    //超时时间
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend:function(xhr){
+                $('.loading').fadeIn();
+                console.log(xhr);
+                console.log('发送前');
+            },
+            success:function(data,textStatus,jqXHR){
+                // alert(data['img'])
+                //
+                var myViewer=$("#mytest");
+                $.each(data['img'],function(n,value) {
+                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+                });
+                $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
+                myViewer.viewer();
+                // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
+                // $("#myorigin").viewer();
+            },
+            error:function(xhr,textStatus){
+                console.log('错误');
+                console.log(xhr);
+                console.log(textStatus);
+            },
+            complete:function(){
+                $('.loading').fadeOut();
+                console.log('结束');
+            }
+        });
     });
 });
