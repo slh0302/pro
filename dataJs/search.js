@@ -20,7 +20,10 @@ $(document).ready(function () {
     });
 
     //image picker choose
-    $("#select_pic").imagepicker({
+    //add pic
+
+    var $select_pic=$("#select_pic");
+    $select_pic.imagepicker({
         clicked:function (data) {
             var src_path=data['node'].children().children().attr('src');
             console.log(data['node'][0]);
