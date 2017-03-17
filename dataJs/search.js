@@ -4,12 +4,22 @@
 window.onload(function () {
     $("#checkbox-11-2").attr("checked",'false');//全选
 });
+
+
+
 $(document).ready(function () {
+
     var $image = $('#image');
     var originalImageURL = $image.attr('src');
     var uploadedImageURL;
     var detectImageURL;
-  //  var $download = $('#download');
+    var databaseName;
+    var isButtonDown=false;
+    var checkStatus=false;
+////
+
+
+    //  var $download = $('#download');
     var options = {
         autoCrop:false,
         aspectRatio: NaN,
@@ -22,9 +32,63 @@ $(document).ready(function () {
         $image.cropper("reset");
     });
 
+
+    //right button
+    var toggle = $('#ss_toggle');
+    var menu = $('#ss_menu');
+    var rot;
+    $('#ss_toggle').on('click', function (ev) {
+        rot = parseInt($(this).data('rot')) - 180;
+        menu.css('transform', 'rotate(' + rot + 'deg)');
+        menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+        if (rot / 180 % 2 == 0) {
+            toggle.parent().addClass('ss_active');
+            toggle.addClass('close');
+        } else {
+            toggle.parent().removeClass('ss_active');
+            toggle.removeClass('close');
+        }
+        $(this).data('rot', rot);
+    });
+    menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+        if (rot / 180 % 2 == 0) {
+            $('#ss_menu div i').addClass('ss_animate');
+        } else {
+            $('#ss_menu div i').removeClass('ss_animate');
+        }
+    });
+
+    $("#setting").on('click',function () {
+        // modal
+    });
+
+    $("#refresh").on('click',function () {
+        isButtonDown=false;
+        location.reload();
+    });
+    $("#back").on('click',function () {
+        if(isButtonDown){
+            isButtonDown=false;
+            location.reload();
+        }
+    });
+
+    $("#move").on('click',function () {
+        p=$(document).scrollTop();
+        half=$(window).height()/2;
+        total=$(document).height();
+        console.info(p+half);
+        if(p+half > total/2){
+            //too down
+            $(document).scrollTop(0);
+        }else{
+            //too up
+            var h = $(document).height()-$(window).height();
+            $(document).scrollTop(h);
+        }
+    });
     //image picker choose
     //add pic
-
     var $select_pic=$("#select_pic");
     $select_pic.imagepicker({
         clicked:function (data) {
@@ -41,11 +105,12 @@ $(document).ready(function () {
     var $btn_detect=$("#btn-detect");
     $checkbox.change(function() {
         if($checkbox.is(':checked')){
+            checkStatus=true;
             $btn_crop.css("display","none");
             $btn_detect.css("display","inline");
-
             //data-original-title
         }else{
+            checkStatus=false;
             $btn_crop.css("display","inline");
             $btn_detect.css("display","none");
         }
@@ -113,6 +178,7 @@ $(document).ready(function () {
 
                 case 'getCroppedCanvas':
                     if (result) {
+                        isButtonDown=true;
                         var $li_origin=$("#li_origin");
                         console.info(result);
                         // Bootstrap's Modal
@@ -126,6 +192,7 @@ $(document).ready(function () {
 
                 case 'getDetect':
                     if (result) {
+                        isButtonDown=true;
                         console.info(result);
                         da=result.toDataURL('image/jpeg').split(';')[1].split(',')[1];
                        // $('#crop-pic').val(result.toDataURL('image/jpeg'));
@@ -196,7 +263,7 @@ $(document).ready(function () {
     // Import image
     var $inputImage = $('#inputImage');
     var URL = window.URL || window.webkitURL;
-    console.info(window.URL);
+
     if (URL) {
         $inputImage.change(function () {
             var files = this.files;

@@ -47,6 +47,7 @@
 	<link rel="stylesheet" href="css/image-picker.css">
 
 	<link rel="stylesheet" href="css/checkbox-11.css">
+	<link rel="stylesheet" href="css/right.css">
 	<style type="text/css">
 		ul.imglist{ margin:0 auto;overflow:hidden}
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
@@ -68,7 +69,26 @@
 <body>
 
 <div id="fh5co-page">
-
+	<div id='ss_menu'>
+		<div>
+			<i id="setting" class="fa fa-cogs"></i>
+		</div>
+		<div>
+			<i id="back" class="fa fa-reply"></i>
+		</div>
+		<div>
+			<i id="move" class="fa fa-arrow-down"></i>
+			<i id="move-up" class="fa fa-arrow-up"></i>
+		</div>
+		<div>
+			<i id="refresh" class="fa fa-refresh"></i>
+		</div>
+		<div class='menu'>
+			<div class='share' id='ss_toggle'  data-rot='180'>
+				<div class='bar'></div>
+			</div>
+		</div>
+	</div>
 	<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 	<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
@@ -85,20 +105,11 @@
 
 		<div class="fh5co-footer">
 			<p>Copyright PKU</p>
-			<!--<ul>-->
-			<!--<li><a href="#"><i class="icon-facebook"></i></a></li>-->
-			<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
-			<!--<li><a href="#"><i class="icon-instagram"></i></a></li>-->
-			<!--<li><a href="#"><i class="icon-linkedin"></i></a></li>-->
-			<!--</ul>-->
 		</div>
 
 	</aside>
 
 	<div id="fh5co-main">
-
-
-
 		<div id="searche-target" class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
 		   	<div id="show-main">
 			<div class="row">
@@ -108,7 +119,7 @@
 			</div>
 
 			<div class="docs-buttons" >
-				<div class="row" style="margin-top: 20px;height: 500px;">
+				<div class="row" style="height: 500px;">
 					<img style="max-width: 100%" id="image" src="images/back.jpg">
 				</div>
 

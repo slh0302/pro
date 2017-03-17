@@ -15,12 +15,13 @@ if (mysqli_connect_errno()) {
     exit;
 }
 
-$str="Select database from db_file ;";
+$str="Select * from db_file;";
 $mysql_result=$mysqli->query($str);
 $arr=array();
 $i=0;
+//print_r( $mysql_result);
 while ($row = $mysql_result->fetch_assoc()){
-    $arr[$i] = $row[0];
+    $arr[$i] = $row;
     $i++;
 }
 
@@ -30,8 +31,8 @@ if($i >0) {
     $result_arr = array("data" => $arr, "msg" => "FAILs");
 }
 mysqli_close($mysqli);
-print_r($arr);
-//echo json_encode($result_arr);
+
+echo json_encode($result_arr);
 
 
 ?>

@@ -56,7 +56,7 @@ input[type="checkbox"] + label {
 }
 
 [id^="checkbox-11-"]:checked + label {
-    background: #df6564;
+    background: #df0809;
 }
 
 [id^="checkbox-11-"]:checked + label:after {
