@@ -116,7 +116,7 @@ $(document).ready(function () {
                         $('#crop-pic').val(result.toDataURL('image/jpeg'));
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
                         $li_origin.empty();
-                        $li_origin.append("<img style='max-width: 100%' id='imagei' src="+result.toDataURL('image/jpeg')+">");
+                        $li_origin.append("<img style='max-width: 100%;height:300px' id='imagei' src="+result.toDataURL('image/jpeg')+">");
 
                     }
                     break;

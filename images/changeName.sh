@@ -1,6 +1,6 @@
 #!/bin/bash
 cd choose/
-temp=0
+temp=20
 for dir in $(ls ./)
 do 
     temp=$(($temp+1))
