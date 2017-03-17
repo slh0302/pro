@@ -71,7 +71,7 @@ $array=explode(' ',$results);
 if($array[0] == "SUCCESS"){
     $count=$array[1];
     // create information
-    $str="Insert into db_file (`database`, fileLocation,`count`,`status`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready');";
+    $str="Insert into db_file (`database`, fileLocation,`count`,`status`,`prefix_location`) VALUES (". "'" . $database . "' , '" .$fileLocation_l . "', '".$count."', 'ready'".$array[3].");";
     $mysqli->query($str);
     // program by data
 	$text="../run/upload/Upload  ". $array[2] . "  " . $array[3] ."  " . $count . " /home/slh/database/".basename($filename)."_base " . $database ." > /home/slh/log/upload.log &";

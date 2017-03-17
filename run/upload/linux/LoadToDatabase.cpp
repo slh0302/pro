@@ -22,13 +22,14 @@ int main(int strs, char** str) {
 	string location;
 	long long num = 0;
 	string filepath;
+	//first is filepath;
+	infile>>location;
+	filepath=location;
 	while (infile>>location) {
 		num++;
-		int index=location.find_last_of('/');
-		filepath = location.substr(0, index);
-		string filename = location.substr(index + 1);
+		string filename = location;
 		outfile<<filename<< " "<<"0"<<endl;
-		string sql_query = sql + filename + "' , '" + filepath + "');";
+		string sql_query = sql + filename + ".jpg' , '" + filepath + "');";
 //		cout<<sql_query<<endl;
 		mysql_query(&mysql, sql_query.c_str());
 		//cout << filepath << "   " << filename << endl;
