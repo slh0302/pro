@@ -1,6 +1,9 @@
 /**
  * Created by Su on 2017/2/28.
  */
+window.onload(function () {
+    $("#checkbox-11-2").attr("checked",'false');//全选
+});
 $(document).ready(function () {
     var $image = $('#image');
     var originalImageURL = $image.attr('src');
