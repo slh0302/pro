@@ -223,6 +223,7 @@
 }
 #ss_menu > div:hover {
     border-color: #66c737;
+    border-style:solid;
     background: #fcfaff;
     cursor: pointer;
 }
