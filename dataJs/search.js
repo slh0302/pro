@@ -1,11 +1,11 @@
 /**
  * Created by Su on 2017/2/28.
  */
+var databaseName="";
 window.onload(function () {
     $("#checkbox-11-2").attr("checked",'false');//全选
+
 });
-
-
 
 $(document).ready(function () {
 
@@ -13,7 +13,6 @@ $(document).ready(function () {
     var originalImageURL = $image.attr('src');
     var uploadedImageURL;
     var detectImageURL;
-    var databaseName;
     var isButtonDown=false;
     var checkStatus=false;
 ////
@@ -57,10 +56,47 @@ $(document).ready(function () {
             $('#ss_menu div i').removeClass('ss_animate');
         }
     });
-
-    $("#setting").on('click',function () {
-        // modal
+    // find data
+    var $setting= $("#setting");
+    var temp;
+    $.get('./php/getDatabaseInfo.php',function (data) {
+        //db_file
+        var $show_data=$('#data-show');
+        var $desc_data=$('#data-descrip');
+        if(data['msg']=="SUCCESS"){
+            temp=data['data'];
+            $show_data.empty();
+            $.each(data['data'],function(n,value) {
+                if(n==0 && databaseName=="") {
+                    databaseName=value['db_location'];
+                    console.info("change");
+                    $desc_data.append("<h4>Database Name:  &nbsp;&nbsp;"+value['database']+" </h4>");
+                    $desc_data.append("<h4>status:  &nbsp;&nbsp;"+value['status']+" </h4>");
+                    $desc_data.append("<h4>Count:  &nbsp;&nbsp;"+value['count']+" </h4>");
+                    $desc_data.append("<h4>File Location:  &nbsp;&nbsp;"+value['fileLocation']+" </h4>");
+                }
+                $show_data.append("<option>"+value['database']+","+value['count']+"</option>");
+            });
+            $('.selectpicker').selectpicker('destroy').selectpicker({showTick:true});
+            $('#content-data a').click(function () {
+                datatemp=temp[$(this).parent().attr("data-original-index")]
+                $desc_data.empty();
+                $desc_data.append("<h4>Database Name:  &nbsp;&nbsp;"+datatemp['database']+" </h4>");
+                $desc_data.append("<h4>status:  &nbsp;&nbsp;"+datatemp['status']+" </h4>");
+                $desc_data.append("<h4>Count:  &nbsp;&nbsp;"+datatemp['count']+" </h4>");
+                $desc_data.append("<h4>File Location:  &nbsp;&nbsp;"+datatemp['fileLocation']+" </h4>");
+            });
+        }
     });
+   // $('.selectpicker').selectpicker({showTick:true});
+    $setting.on('click',function () {
+        $("#settings").modal();
+    });
+    //
+
+
+
+
 
     $("#refresh").on('click',function () {
         isButtonDown=false;
@@ -73,7 +109,20 @@ $(document).ready(function () {
         }
     });
 
-    $("#move").on('click',function () {
+    //move judge
+    $(window).scroll(function(e){
+        p=$(document).scrollTop();
+        half=$(window).height()/2;
+        total=$(document).height();
+        if(p+half > total/2){
+            $("#move").css("display","none");
+            $("#move-up").css("display","inline-block");
+        }else{
+            $("#move").css("display","inline-block");
+            $("#move-up").css("display","none");
+        }
+    });
+    $("#move,#move-up").on('click',function () {
         p=$(document).scrollTop();
         half=$(window).height()/2;
         total=$(document).height();

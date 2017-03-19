@@ -75,7 +75,6 @@
     animation: badbounce 1s linear;
 }
 
-
 #ss_menu {
     bottom: 30px;
     width: 60px;
@@ -85,13 +84,13 @@
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     transition: all 1s ease;
-    right: 10px;
+    right: 20px;
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
-    z-index: 10;
+    z-index: 100;
 }
 #ss_menu > .menu {
     display: block;
@@ -121,6 +120,7 @@
     -moz-transition: all 1s ease;
     transition: all 1s ease;
 }
+
 #ss_menu > .menu .share .bar {
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
@@ -164,7 +164,6 @@
     -o-transform: rotate(-60deg);
     transform: rotate(-60deg);
 }
-
 #ss_menu > .menu .share.close .bar {
     top: 50%;
     margin-top: -1.5px;
@@ -194,7 +193,7 @@
     transform: rotate(-450deg);
 }
 #ss_menu > .menu.ss_active {
-    background: #df0809;
+    background: #7ac143;
     -webkit-transform: scale(0.7);
     -moz-transform: scale(0.7);
     -ms-transform: scale(0.7);
@@ -210,21 +209,24 @@
     height: 60px;
     font-size: 30px;
     text-align: center;
-    background: rgba(102, 199, 55, 0.7);
+    background: #ffffff;
+    border-color: #7ac143;
+    border-style: solid;
     border-radius: 50%;
     display: table;
 }
 #ss_menu > div i {
+    color: #7ac143;
     display: table-cell;
     vertical-align: middle;
 }
 #ss_menu > div i:hover {
-   color: #66c737;
+    color: #ffffff;
+    display: table-cell;
+    vertical-align: middle;
 }
 #ss_menu > div:hover {
-    border-color: #66c737;
-    border-style:solid;
-    background: #fcfaff;
+    background: #7ac143;
     cursor: pointer;
 }
 #ss_menu div:nth-child(1) {

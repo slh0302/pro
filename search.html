@@ -45,7 +45,7 @@
 	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" href="css/viewer.min.css">
 	<link rel="stylesheet" href="css/image-picker.css">
-
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
 	<link rel="stylesheet" href="css/checkbox-11.css">
 	<link rel="stylesheet" href="css/right.css">
 	<style type="text/css">
@@ -77,13 +77,13 @@
 			<i id="back" class="fa fa-reply"></i>
 		</div>
 		<div>
-			<i id="move" class="fa fa-arrow-down"></i>
-			<i id="move-up" class="fa fa-arrow-up"></i>
+			<i id="move" class="fa fa-arrow-down" style="margin-top: 5px"></i>
+			<i id="move-up" class="fa fa-arrow-up" style="margin-top: 5px;display: none"></i>
 		</div>
 		<div>
 			<i id="refresh" class="fa fa-refresh"></i>
 		</div>
-		<div class='menu'>
+		<div class='menu' style="background:#7ac143;border-radius:50%;border-style: none">
 			<div class='share' id='ss_toggle'  data-rot='180'>
 				<div class='bar'></div>
 			</div>
@@ -312,6 +312,42 @@
 		</div>
 	</div><!-- /.modal -->
 
+	<div class="modal fade docs-cropped" id="settings" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="settingsTitle">Search Configuration</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body" >
+					<!-- have a choose box-->
+					<div class="row" style="margin-left: 80px">
+						<h3>choose Database: </h3>
+					</div>
+					<div id="content-data" class="row" style="margin-left: 120px">
+						<select id="data-show" class="selectpicker show-tick" data-width="70%" style="border-radius: 0">
+						</select>
+					</div>
+					<div class="row" style="margin-left: 80px;margin-top: 30px">
+						<h3>Database description: </h3>
+					</div>
+					<div id="data-descrip" class="row" style="margin-left: 120px">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="btn-group">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<!--<a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>-->
+						<button type="button" id="set-btn" class="btn btn-secondary" style="background: #7ac143;color: #fff">Complete</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div><!-- /.modal -->
+
 </div>
 
 <!-- jQuery -->
@@ -332,6 +368,7 @@
 <script src="js/cropper.js"></script>
 <script src="js/viewer-jquery.min.js"></script>
 <script src="js/image-picker.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
 <!-- MAIN JS -->
 
 <script src="js/main.js"></script>
