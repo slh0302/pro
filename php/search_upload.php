@@ -48,7 +48,7 @@ if($isDetect=="false") {
     $img = base64_decode($base64);
     $filename = date('YmdHis') . '.jpg';
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
-    $execString="../run/search/DoSearch.sh  "."/var/www/html/pro/searchFile/". $filename;
+    $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
 }else{
 
     $filename =  basename($input['data']);;
