@@ -358,7 +358,7 @@ $(document).ready(function () {
                 data:da,
                 isDetect:false
             },
-            timeout:20000,    //超时时间
+            timeout:50000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend:function(xhr){
 

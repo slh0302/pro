@@ -5,33 +5,33 @@
  * Date: 2017/3/5
  * Time: 15:48
  */
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
+echo phpinfo();
+//$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'test');
 
-$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'test');
 
+//if (mysqli_connect_errno()) {
+ //   echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
+ //   exit;
+//}
 
-if (mysqli_connect_errno()) {
-    echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
-    exit;
-}
+//$str="Select * from db_file;";
+//$mysql_result=$mysqli->query($str);
+//$arr=array();
+//$i=0;
+//print_r( $mysql_result);
+//while ($row = $mysql_result->fetch_assoc()){
+//   $arr[$i] = $row;
+//    $i++;
+//}
 
-$str="Select * from db_file;";
-$mysql_result=$mysqli->query($str);
-$arr=array();
-$i=0;
-print_r( $mysql_result);
-while ($row = $mysql_result->fetch_assoc()){
-    $arr[$i] = $row;
-    $i++;
-}
-
-if($i >0) {
-    $result_arr = array("data" => $arr, "msg" => "SUCCESS");
-}else{
-    $result_arr = array("data" => $arr, "msg" => "FAILs");
-}
-mysqli_close($mysqli);
-print_r( $arr);
+//if($i >0) {
+//    $result_arr = array("data" => $arr, "msg" => "SUCCESS");
+//}else{
+//    $result_arr = array("data" => $arr, "msg" => "FAILs");
+//}
+//mysqli_close($mysqli);
+//print_r( $arr);
 //echo json_encode($result_arr);
 
 

@@ -64,7 +64,7 @@ if(file_exists("../run/runResult/result.txt")){
 //exec 执行
 
 //echo $execString;$results=my_exec($execString);
-$results=my_exec($execString);
+$results=exec($execString);
 //echo $results;
 $file_result=array();
 $usetime="";
