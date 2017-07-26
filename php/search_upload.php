@@ -38,7 +38,8 @@ $a="";
 $execString="";
 
 
-$isDetect=$input['isDetect'];
+$isDetect = $input['isDetect'];
+$isPerson = $input['isPerson'];
 //echo $isDetect;
 if($isDetect=="false") {
     $data = $input['data'];
@@ -48,12 +49,20 @@ if($isDetect=="false") {
     $img = base64_decode($base64);
     $filename = date('YmdHis') . '.jpg';
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
-    $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+    if($isPerson=="false"){
+        $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+    }else{
+        $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+    }
 }else{
 
     $filename =  basename($input['data']);;
 //	echo $filename;
-    $execString="../run/search/DoSearch.sh  ". "/home/slh/pro/run/runResult/".$filename;
+    if($isPerson=="false"){
+        $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+    }else{
+        $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+    }
     $a="0";
 }
 //print_r($a);
@@ -84,9 +93,9 @@ $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path,"isPerson"=>$isPerson);
 }else{
-    $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a);
+    $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a,"isPerson"=>$isPerson);
 }
 
 echo json_encode($result);

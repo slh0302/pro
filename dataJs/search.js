@@ -350,13 +350,21 @@ $(document).ready(function () {
         $("#searche-target").css('display','none');
         $("#searche-result").css('display','block');
 
+        var usage = $("meta[name=usage]");
+        var isPerson = false;
+        if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
+            isPerson = false;
+        }else{
+            isPerson = true;
+        }
         //$.get('./php/search_upload.php');
         $.ajax({
             url:'./php/search_upload.php',
             type:'POST', //GET
             data:{
                 data:da,
-                isDetect:false
+                isDetect:false,
+                isPerson:isPerson
             },
             timeout:50000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
@@ -403,13 +411,23 @@ $(document).ready(function () {
         $("#searche-target").css('display','none');
 		$('#pic-detect').css("display","none");
         $("#searche-result").css('display','block');
-        da=detectImageURL;
+        var da = detectImageURL;
+
+        var usage = $("meta[name=usage]");
+        var isPerson = false;
+        if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
+            isPerson = false;
+        }else{
+            isPerson = true;
+        }
+
         $.ajax({
             url:'./php/search_upload.php',
             type:'POST', //GET
             data:{
                 data:da,
-                isDetect:true
+                isDetect:true,
+                isPerson:isPerson
             },
             timeout:20000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
