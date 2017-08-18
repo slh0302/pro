@@ -43,7 +43,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet" href="css/cns.css">
 	<link href="./css/jquery.filer.css" type="text/css" rel="stylesheet" />
 	<link href="./css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 
@@ -65,17 +65,17 @@
 			<h1 id="fh5co-logo"><a href="index.html"><img src="images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="listPhotos.html">Data</a></li>
-					<li class="fh5co-active"><a href="upload.html">Upload</a></li>
-					<li><a href="search.html">Search</a></li>
-					<li><a href="person.html">Person</a></li>
+					<li><a href="index.html">主页</a></li>
+					<li><a href="listPhotos.html">数据查询</a></li>
+					<li class="fh5co-active"><a href="upload.html">上传数据</a></li>
+					<li><a href="search.html">车辆检索</a></li>
+					<li><a href="person.html">行人检索</a></li>
 				</ul>
 			</nav>
 
 
 			<div class="fh5co-footer">
-				<p>Copyright PKU</p>
+				<p>CopyRight PKU</p>
 				<!--<ul>-->
 				<!--<li><a href="#"><i class="icon-facebook"></i></a></li>-->
 				<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
@@ -89,12 +89,12 @@
 		<div id="fh5co-main">
 
 			<div  class="fh5co-narrow-content animate-box fh5co-border-bottom"  data-animate-effect="fadeInLeft">
-				<h2 class="fh5co-heading" >Create DataBase and Upload Pictures</span></h2>
+				<h2 class="fh5co-heading" >创建数据库和上传图片数据</span></h2>
 				<div id="pre-button" class="row" style="margin-top: 220px;margin-bottom: 220px; text-align: center">
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<button id="begin-button" class=" btn btn-primary btn-block btn-outline">
-							<B>Begin</B>
+							<B>开始创建</B>
 						</button>
 					</div>
 					<div class="col-md-4"></div>
@@ -105,14 +105,14 @@
 					<div class="col-md-4"></div>
 					<div class="col-md-4">
 						<button id="af-button" class=" btn btn-primary btn-block btn-outline">
-							<B>Click To Finish</B>
+							<B>点击完成</B>
 						</button>
 					</div>
 					<div class="col-md-4"></div>
 				</div>
 				<div id="show-tab" class="animate-box " data-animate-effect="fadeInLeft" style="display: none ">
 					<form action="./php/upload_onefile.php" method="post" enctype="multipart/form-data">
-					<h3 style="margin-top: 80px;">1. Input the database name:</h3>
+					<h3 style="margin-top: 80px;">1. 输入数据库名字:</h3>
 					<div class="row">
 						<!-- input the database -->
 						<div class="col-md-6" style="text-align: center">
@@ -121,7 +121,7 @@
 					</div>
 					<div id="show-tab2" class="animate-box " data-animate-effect="fadeInLeft" >
 						<!--  upload file control -->
-						<h3 style="margin-top: 15px">2. Upload the file:</h3>
+						<h3 style="margin-top: 15px">2. 上传文件:</h3>
 						<input type="radio"  name="workWay" value="filelist"/> <b>File List</b>
 						<input type="radio"  name="workWay" value="picture" /> <b>Picture</b>
 					</div>
@@ -135,7 +135,7 @@
 						<!--<h3 style="margin-top: 15px">2. Upload the file:</h3>-->
 							<input type="file" name="files[]" id="filer_input" multiple="multiple">
 							<button id="submit-button" class=" btn btn-primary btn-block btn-outline" type="submit" value="Submit" style="width: 343px;margin: 0 auto 25px auto">
-								<B>Submit</B>
+								<B>提交</B>
 							</button>
 
 					</div>
@@ -146,7 +146,7 @@
 			<div class="fh5co-narrow-content">
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-						<h1 class="fh5co-heading">User Guide</h1>
+						<h1 class="fh5co-heading">使用说明</h1>
 					</div>
 				</div>
 				<div class="row">
@@ -162,7 +162,7 @@
 						<p class="fh5co-lead">XXXXXXXX</p>
 
 						<div style="text-align:right">
-							<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+							<p><a href="#" class="btn btn-primary btn-outline">更多</a></p>
 						</div>
 					</div>
 					

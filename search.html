@@ -48,6 +48,7 @@
 	<link rel="stylesheet" href="css/bootstrap-select.min.css">
 	<link rel="stylesheet" href="css/checkbox-11.css">
 	<link rel="stylesheet" href="css/right.css">
+	<link rel="stylesheet" href="css/cns.css">
 	<style type="text/css">
 		ul.imglist{ margin:0 auto;overflow:hidden}
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
@@ -95,11 +96,11 @@
 		<h1 id="fh5co-logo"><a href="index.html"><img src="images/logo-colored.png" alt="Free HTML5 Bootstrap Website Template"></a></h1>
 		<nav id="fh5co-main-menu" role="navigation">
 			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="listPhotos.html">Data</a></li>
-				<li><a href="upload.html">Upload</a></li>
-				<li class="fh5co-active"><a href="search.html">Search</a></li>
-				<li><a href="person.html">Person</a></li>
+				<li><a href="index.html">主页</a></li>
+				<li><a href="listPhotos.html">数据查询</a></li>
+				<li><a href="upload.html">上传数据</a></li>
+				<li class="fh5co-active"><a href="search.html">车辆检索</a></li>
+				<li><a href="person.html">行人检索</a></li>
 			</ul>
 		</nav>
 
@@ -115,7 +116,7 @@
 		   	<div id="show-main">
 			<div class="row">
 				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-					<h1 class="fh5co-heading">Search Images</h1>
+					<h1 class="fh5co-heading">车辆检索</h1>
 				</div>
 			</div>
 
@@ -127,12 +128,12 @@
 				<div class="row" style="margin-top: 20px;text-align: center">
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Move the picture">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="移动图片">
 						  <span class="fa fa-arrows"></span>
 						</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Crop the picture">
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="开始截图">
 						  <span class="fa fa-crop"></span>
 						</span>
 						</button>
@@ -140,12 +141,12 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Zoom In">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="放大">
 							  <span class="fa fa-search-plus"></span>
 							</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Zoom Out">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="缩小">
 							  <span class="fa fa-search-minus"></span>
 							</span>
 						</button>
@@ -153,12 +154,12 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="crop" title="Crop">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Crop Initialization">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="截图初始化">
 							  <span class="fa fa-check"></span>
 							</span>
 						</button>
 						<button type="button" class="btn btn-primary" data-method="clear" title="Clear">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Clear">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="清空">
 							  <span class="fa fa-remove"></span>
 							</span>
 						</button>
@@ -166,13 +167,13 @@
 
 					<div class="btn-group">
 						<button type="button" class="btn btn-primary" data-method="reset" title="Reset">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Reset">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="重置">
 							  <span class="fa fa-refresh"></span>
 							</span>
 						</button>
 						<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
 							<input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Import picture data">
+							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="上传图片">
 							 <span class="fa fa-upload"></span>
 							</span>
 						</label>
@@ -180,13 +181,13 @@
 				</div>
 				<div class="row fh5co-border-bottom" style="margin-top: 20px;text-align: center">
 					<button id="btn-crop" type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas" style="margin-bottom: 30px">
-						<span id="span-crop" class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Go Search">
-						  Get Cropped Image
+						<span id="span-crop" class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="检索">
+						  获取检索图片
 						</span>
 					</button>
 					<button id="btn-detect" type="button" class="btn btn-primary btn-outline" data-method="getDetect" style="margin-bottom: 30px;display: none">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="Go Check">
-						  Detect Image
+						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="检测">
+						  检测图片
 						</span>
 					</button>
 					<input type="checkbox" id="checkbox-11-2"  />
@@ -199,7 +200,7 @@
 			<div  id="pic-picked" class="row " style="margin-top: 50px">
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-						<h2 >Example Images</h2>
+						<h2>示例图片</h2>
 					</div>
 				</div>
 				<!-- picture picked -->
@@ -228,7 +229,7 @@
 			<div  id="pic-detect" class="animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px;display: none" >
 				<div class="row">
 					<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-						<h1 >Detected Image</h1>
+						<h1 >检测图片结果</h1>
 						<div id="detect-load" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 					</div>
 				</div>
@@ -237,7 +238,7 @@
 				</div>
 				<div class="row animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px;">
                     <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h3 >Choose a image and search</h3>
+                        <h3 >选择一个图片并且检索</h3>
                         <div id="detect-h2" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
                     </div>
                 </div>
@@ -251,7 +252,7 @@
 				</div>
 				<div class="row"  style="text-align: center">
 					<button id="btn-submit" type="button" class="btn btn-primary btn-outline animate-box" data-animate-effect="fadeInLeft" style="margin-top: 30px">
-						Search Image
+						检索图片
 					</button>
 				</div>
 			</div>
@@ -260,7 +261,7 @@
 
 		<div id="searche-result" class="fh5co-narrow-content" style="display:none;">
 			<div class="row animate-box"   data-animate-effect="fadeInLeft">
-				<h1 class="fh5co-heading-colored">Query Image</h1>
+				<h1 class="fh5co-heading-colored">待查询的图片</h1>
 				<div id="origin-img-dis"  class="col-sm-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: center">
 					<ul id="myorigin" >
 						<li id="li_origin" style="list-style-type:none;">
@@ -270,7 +271,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-					<h1 class="fh5co-heading-colored">Results</h1>
+					<h1 class="fh5co-heading-colored">检索结果</h1>
 					<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 				</div>
 			</div>

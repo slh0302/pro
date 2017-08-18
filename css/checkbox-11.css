@@ -25,7 +25,7 @@ input[type="checkbox"] + label {
 }
 
 [id^="checkbox-11-"] + label:before {
-    content: ' ';
+    content: '';
     position: absolute;
     background: #FFF;
     top: 0px;
@@ -39,7 +39,7 @@ input[type="checkbox"] + label {
 }
 
 [id^="checkbox-11-"] + label:after {
-    content: 'Manual';
+    content: '检索';
     position: absolute;
     top: 7px;
     left: 37px;
@@ -62,12 +62,11 @@ input[type="checkbox"] + label {
 [id^="checkbox-11-"]:checked + label:after {
     padding-right: 0px;
     padding-left: 5px;
-    content: 'Auto';
+    content: '检测';
     left: 15px;
 }
 
 [id^="checkbox-11-"]:checked + label:before {
-    content: ' ';
     position: absolute;
     z-index: 99999;
     left: 68px;
@@ -75,7 +74,7 @@ input[type="checkbox"] + label {
 
 
 [id^="checkbox-11-"] + label:after {
-    left: 30px;
+    left: 38px;
 }
 
 #checkbox-11-3 + label:before {

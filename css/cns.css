@@ -1,0 +1,29 @@
+li a{
+    font-size: 16px !important;
+    font-family: Microsoft YaHei !important;
+    /*font-weight: bold !important;*/
+}
+
+div h1{
+    font-size: 35px !important;
+    font-family: Microsoft YaHei !important;
+}
+
+div h2{
+    font-size: 32px !important;
+    font-family: Microsoft YaHei !important;
+    font-weight: bold !important;
+}
+
+div h3{
+    font-size: 22px !important;
+    font-family: Microsoft YaHei !important;
+    font-weight: bold !important;
+}
+
+div p{
+    font-size: 17px !important;
+    font-family: Microsoft YaHei !important;
+}
+
+
