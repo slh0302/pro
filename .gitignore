@@ -3,3 +3,4 @@ searchFile/
 run/runResult/*
 php/FileList/*
 run/test.sh
+run/originResult/

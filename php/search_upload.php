@@ -6,7 +6,7 @@
  * Time: 15:12
  *
  */
-function my_exec($cmd, $input='')
+ function my_exec($cmd, $input='')
  {
      $proc = proc_open($cmd, array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
      fwrite($pipes[0], $input);
@@ -30,6 +30,22 @@ function my_exec($cmd, $input='')
     }
     return true;
  }
+ function delFile($dirName){
+    if(file_exists($dirName) && $handle=opendir($dirName)){
+        while(false!==($item = readdir($handle))){
+            if($item!= "." && $item != ".."){
+                if(file_exists($dirName.'/'.$item) && is_dir($dirName.'/'.$item)){
+                    delFile($dirName.'/'.$item);
+                }else{
+                    if(unlink($dirName.'/'.$item)){
+                        return true;
+                    }
+                }
+            }
+        }
+        closedir( $handle);
+    }
+ }
 
 $input = filter_input_array(INPUT_POST);
 
@@ -40,8 +56,10 @@ $execString="";
 
 $isDetect = $input['isDetect'];
 $isPerson = $input['isPerson'];
-//echo $isDetect;
-if($isDetect=="false") {
+// echo $isDetect;
+// print_r($isPerson);
+
+if($isDetect == "false") {
     $data = $input['data'];
   //  echo $data;
     $base64 = trim($data);
@@ -49,7 +67,7 @@ if($isDetect=="false") {
     $img = base64_decode($base64);
     $filename = date('YmdHis') . '.jpg';
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
-    if($isPerson=="false"){
+    if($isPerson =="false"){
         $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
     }else{
         $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
@@ -65,14 +83,16 @@ if($isDetect=="false") {
     }
     $a="0";
 }
-//print_r($a);
-//Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
+//print_r($execString);
+// Header( "Content-type: image/jpeg");//直接输出显示jpg格式图片
 if(file_exists("../run/runResult/result.txt")){
 	unlink("../run/runResult/result.txt");
 }
+if(!dir_is_empty("../run/runResult/originResult/")){
+    delFile("../run/runResult/originResult/");
+}
 //exec 执行
-
-//echo $execString;$results=my_exec($execString);
+//echo $execString;//$results=my_exec($execString);
 $results=exec($execString);
 //echo $results;
 $file_result=array();
@@ -84,7 +104,7 @@ if(!dir_is_empty("../run/runResult")) {
 		while(!feof($myfile)) {
             $path = fgets($myfile);
             if($path != ""){
-	    	array_push($file_result,$path);
+	    	    array_push($file_result,$path);
             }
 	}
     }

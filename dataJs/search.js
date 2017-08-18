@@ -351,6 +351,7 @@ $(document).ready(function () {
         $("#searche-result").css('display','block');
 
         var usage = $("meta[name=usage]");
+
         var isPerson = false;
         if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
             isPerson = false;
@@ -386,6 +387,13 @@ $(document).ready(function () {
                 myViewer.viewer();
                 // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
                 // $("#myorigin").viewer();
+                if(isPerson){
+                    console.info($("#mytest li img"));
+                    $("#mytest li ").css('text-align','center');
+                    $("#mytest li img").css('margin-left','31%');
+                    $("#mytest li img").css('width','100px');
+                    $("#mytest li img").css('height','300px');
+                }
             },
             error:function(xhr,textStatus){
                 console.log('错误');
