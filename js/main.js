@@ -179,3 +179,17 @@
 
 
 }());
+
+
+
+$(document).ready(function () {
+	$('#change-contain').click(function () {
+		if($('body').attr('class') == "offcanvas") {
+   			$('#fh5co-aside h1 a img').attr('src','images/logo.png');
+            console.info($('body').attr('class'));
+        }else{
+            $('#fh5co-aside h1 a img').attr('src','images/logo-colored.png');
+		}
+
+    });
+});
