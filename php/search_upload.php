@@ -74,8 +74,8 @@ if($isDetect == "false") {
         case 'person':
             $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
-        case 'posture':
-            $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
+        case 'personMap':
+            $execString="../run/search/DoPersonMap.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
         case 'map':
             $execString="../run/search/DoMap.sh  "."/home/slh/pro/searchFile/". $filename;
@@ -91,7 +91,7 @@ if($isDetect == "false") {
         case 'person':
             $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
-        case 'posture':
+        case 'personMap':
             $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
         case 'map':

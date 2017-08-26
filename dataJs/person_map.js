@@ -1,3 +1,6 @@
+/**
+ * Created by slh on 2017/8/26.
+ */
 //标注点数组
 // {
 //     title: "路口1",
@@ -30,15 +33,13 @@
 var markerArr = [];
 // icon
 var icon = [{icon:{
-        w: 23,
-        h: 25,
-        l: 46,
-        t: 21,
-        x: 9,
-        lb: 12
+    w: 23,
+    h: 25,
+    l: 46,
+    t: 21,
+    x: 9,
+    lb: 12
 }}];
-
-var usage = "";
 
 $("#map-search-btn").click(function () {
     var text = $('#crop-pic').val();
@@ -47,7 +48,7 @@ $("#map-search-btn").click(function () {
     $("#searche-target").css('display','none');
     $("#searche-result").css('display','block');
 
-    usage = $("meta[name=usage]").attr("content");
+    var usage = $("meta[name=usage]").attr("content");
     ///console.info(da);
     $.ajax({
         url:'./php/search_upload.php',
@@ -66,22 +67,6 @@ $("#map-search-btn").click(function () {
             //console.info(data);
             $("#map-re").css('display','block');
             $("#viewer-re").css('display','none');
-            // map-re
-            // data =[
-            //     {
-            //         title: "Rank",
-            //         content: "联通岗",
-            //         point: "37.200251|122.061231",
-            //         isOpen: 0
-            //          url:
-            //     },
-            //     {
-            //         title: "文登南路",
-            //         content: "图片2",
-            //         point: "37.200427|122.069339",
-            //         isOpen: 0
-            //
-            //     }];
             $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
             $.each(data['map'],function(n,value) {
                 if(value['title']!=""){
@@ -117,7 +102,7 @@ $('.map-btn').click(function () {
     myViewer.viewer();
     // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
     // $("#myorigin").viewer();
-    if(usage == "personMap"){
+    if(isPerson){
         console.info($("#mytest li img"));
         $("#mytest li ").css('text-align','center');
         $("#mytest li img").css('margin-left','31%');
@@ -269,14 +254,14 @@ function createInfoWindow(i) {
     var json = markerArr[i];
     var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b>" +
         "<div class='row' style='text-align: center;height: auto;margin-top: 10px'> " +
-            "<div>" +
-            "<img src='" + json.content + "' style='width: 360px;height: 250px'>" +
-            "</div>"+
+        "<div>" +
+        "<img src='" + json.content + "' style='width: 360px;height: 250px'>" +
+        "</div>"+
         "</div>" +
         "</div>" +
         "<div class='row' style='text-align: center;margin-top: 10px'>" +
         "<div class='col-md-12'>" +
-            "<a class='map-btn-result map-btn-result-action map-btn-result-pill' onclick='createViewer("+json.id+")' myid='"+ json.id +"' id='" + json.cid + "'>查看所有结果</a>" +
+        "<a class='map-btn-result map-btn-result-action map-btn-result-pill' onclick='createViewer("+json.id+")' myid='"+ json.id +"' id='" + json.cid + "'>查看所有结果</a>" +
         "</div>" +
         "</div>"
         ,opts);
