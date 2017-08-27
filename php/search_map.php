@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: slh
- * Date: 17-8-24
- * Time: 上午9:08
+ * Date: 2017/8/27
+ * Time: 11:58
  */
 
  function dir_is_empty($dir){
@@ -64,12 +64,14 @@ if($isDetect == "false") {
     $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
     switch ($usage){
         case 'vehicle':
+            socket_write($socket, "2 ", 8192);
             $in .= " 1";
             socket_write($socket, $in, strlen($in));
             $out = socket_read($socket, 8192);
             socket_close($socket);
             break;
         case 'person':
+            socket_write($socket, "1 ", 8192);
             $in .= " 0";
             socket_write($socket, $in, strlen($in));
             $out = socket_read($socket, 8192);
@@ -96,17 +98,33 @@ $file_result=array();
 $usetime="";
 $length = 0;
 
-
+$map_array = array();
 if($out != "") {
     $list = explode(",", $out);
     $usetime = $list[0];
-    for($i = 1; $i < count($list); $i ++){
-        $path = $list[$i];
-        if($path != " "){
-            array_push($file_result,$path);
+    $num = $list[1];
+    // title , pic num, point
+    for($i = 1; $i <$num; $i++){
+        $temp_array = array();
+        $temp_array["title"] = $list[1 + $i];
+        $i ++;
+        $file_num = intval($list[1 + $i]);
+        $i ++;
+        $temp_array["point"] = $list[1 + $i];
+        $i ++;
+        $temp_array["content"] = $list[1 + $i];
+        $temp_array['url'] = array();
+        array_push($temp_array['url'], $temp_array["content"]);
+        for( $j=1 ;$j<$file_num; $j++){
+            if($list[1 + $i + $j] != ""){
+                array_push($temp_array['url'], $list[1 + $i + $j]);
+            }
         }
+        array_push($map_array, $temp_array );
+        $i += $file_num  ;
     }
 }
+
 $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
