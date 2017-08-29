@@ -86,7 +86,7 @@ if($isDetect == "false") {
 //	echo $filename;
     switch ($usage){
         case 'vehicle':
-            $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+            $execString="../run/search/DoDetect.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
         case 'person':
             $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
@@ -114,46 +114,51 @@ $results=exec($execString);
 //echo $results;
 $file_result=array();
 $usetime="";
-if(!dir_is_empty("../run/runResult")) {
+$map_array = array();
+$length = 0;
+if(!dir_is_empty("../run/runResult")  && $usage != 'map') {
    if($myfile = fopen("../run/runResult/result.txt", "r") or die("Unable to open file!")){
-		
         $usetime =fgets($myfile);
 		while(!feof($myfile)) {
             $path = fgets($myfile);
             if($path != ""){
 	    	    array_push($file_result,$path);
             }
-	}
+	    }
+       $length = count($file_result);
     }
+}else if(!dir_is_empty("../run/runResult")){
+    if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+        $usetime = fgets($myfile);
+        while(!feof($myfile)) {
+            $temp_array = array();
+            $title = fgets($myfile);
+            $numSpace = fgets($myfile);
+            $point = fgets($myfile);
+            $file_num = intval($numSpace);
+            $temp_array["title"] = str_replace("\n","",$title);
+            $temp_array["content"] = str_replace("\n","",fgets($myfile));
+            $temp_array["point"] = str_replace("\n","",$point);
+            $temp_array['url'] = array();
+            array_push($temp_array['url'], $temp_array["content"]);
+            for( $i=1 ;$i<$file_num; $i++){
+                $url_temp = str_replace("\n","",fgets($myfile));
+                if($url_temp != ""){
+                    array_push($temp_array['url'], $url_temp);
+                }
+            }
+            array_push($map_array, $temp_array );
+        }
+    }
+    $length = count($map_array);
 }
-$map_array = array();
-//if($usage == 'map'){
-//    if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
-//        while(!feof($myfile)) {
-//            $temp_array = array();
-//            $path = fgets($myfile);
-//            $re = explode(" ", $path);
-//            $temp_array["title"] = $re[0];
-//            $file_num = intval($re[1]);
-//            $temp_array["content"] = $file_num;
-//            $temp_array["point"] = $re[2];
-//            $temp_array['url'] = array();
-//            for( $i=0 ;$i<$file_num; $i++){
-//                if($re[3+$i] != "")
-//                array_push($temp_array['url'],$re[3+$i]);
-//            }
-//            array_push($temp_array,$map_array);
-//        }
-//    }
-//
-//}
 $origin_file_path="./searchFile/".$filename;
-$length = count($file_result);
+
 
 if( $length > 0 ){
     $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path,"isPerson"=>$isPerson,"map"=>$map_array);
 }else{
-    $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a,"isPerson"=>$isPerson);
+    $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a,"isPerson"=>$isPerson,"map"=>$map_array);
 }
 
 echo json_encode($result);

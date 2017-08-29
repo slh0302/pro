@@ -1,4 +1,4 @@
-﻿//标注点数组
+//标注点数组
 // {
 //     title: "路口1",
 //     content: "图片1",
@@ -45,8 +45,8 @@ $("#map-search-btn").click(function () {
     $("#searche-target").css('display','none');
     $("#searche-result").css('display','block');
 
-    var usage = $("meta[name=usage]");
-
+    var usage = $("meta[name=usage]").attr("content");
+    ///console.info(da);
     $.ajax({
         url:'./php/search_upload.php',
         type:'POST', //GET
@@ -61,6 +61,7 @@ $("#map-search-btn").click(function () {
             $('.loading').fadeIn();
         },
         success:function(data){
+            //console.info(data);
             $("#map-re").css('display','block');
             $("#viewer-re").css('display','none');
             // map-re
@@ -79,8 +80,15 @@ $("#map-search-btn").click(function () {
             //         isOpen: 0
             //
             //     }];
+            $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
             $.each(data['map'],function(n,value) {
-                markerArr.push(value);
+                if(value['title']!=""){
+                    value['icon'] = icon[0]['icon'];
+                    value['isOpen'] = 0;
+                    value['cid'] = "MapResult" + n;
+                    value['id'] = n;
+                    markerArr.push(value);
+                }
             });
         },
         error:function(xhr,textStatus){
@@ -94,7 +102,7 @@ $("#map-search-btn").click(function () {
 
 });
 
-$('.map-btn-result').click(function () {
+$('.map-btn').click(function () {
     alert("more");
     // destory
     $("#map-re").css('display','none');
@@ -103,7 +111,7 @@ $('.map-btn-result').click(function () {
     $.each(data['img'],function(n,value) {
         myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
     });
-    $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
+
     myViewer.viewer();
     // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
     // $("#myorigin").viewer();
@@ -135,6 +143,24 @@ function makeMakerArry(data) {
     }
 }
 
+function createViewer(id) {
+    $("#map-re").css('display','none');
+    $("#viewer-re").css('display','block');
+    var myViewer=$("#mytest");
+    myViewer.empty();
+    $.each(markerArr[parseInt(id)]['url'],function(n,value) {
+        myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+    });
+    myViewer.viewer();
+}
+
+$("#map-btn-back").click(function () {
+    var myViewer=$("#mytest");
+    myViewer.viewer('destroy');
+    myViewer.empty();
+    $("#map-re").css('display','block');
+    $("#viewer-re").css('display','none');
+});
 
 //创建和初始化地图函数：
 function initMap() {
@@ -147,7 +173,7 @@ function initMap() {
 //创建地图函数：
 function createMap() {
     var map = new BMap.Map("dituContent",{enableMapClick:false}); //在百度地图容器中创建一个地图
-    var point = new BMap.Point(122.067095, 37.195089); //定义一个中心点坐标
+    var point = new BMap.Point(122.067095, 37.193089); //定义一个中心点坐标
     map.centerAndZoom(point, 13); //设定地图的中心点和坐标并将地图显示在地图容器中
     window.map = map; //将map变量存储在全局
 }
@@ -234,10 +260,24 @@ function addMarker() {
 }
 //创建InfoWindow
 function createInfoWindow(i) {
+    var opts = {
+        height:360,
+        width:460
+    };
     var json = markerArr[i];
     var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b>" +
-        "<div class='iw_poi_content'>" + json.content + "</div>" +
-        "<button class='map-btn-result' id='" + json.id + "'>查看结果</button>");
+        "<div class='row' style='text-align: center;height: auto;margin-top: 10px'> " +
+            "<div>" +
+            "<img src='" + json.content + "' style='width: 360px;height: 250px'>" +
+            "</div>"+
+        "</div>" +
+        "</div>" +
+        "<div class='row' style='text-align: center;margin-top: 10px'>" +
+        "<div class='col-md-12'>" +
+            "<a class='map-btn-result map-btn-result-action map-btn-result-pill' onclick='createViewer("+json.id+")' myid='"+ json.id +"' id='" + json.cid + "'>查看所有结果</a>" +
+        "</div>" +
+        "</div>"
+        ,opts);
     return iw;
 }
 //创建一个Icon

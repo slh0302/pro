@@ -20,6 +20,7 @@ $(document).ready(function () {
 
     //  var $download = $('#download');
     var options = {
+        zoomOnWheel:false,
         autoCrop:false,
         aspectRatio: NaN,
         crop: function(e) {
@@ -354,7 +355,7 @@ $(document).ready(function () {
 
         //$.get('./php/search_upload.php');
         $.ajax({
-            url:'./php/search_upload.php',
+            url:'./php/new_search.php',
             type:'POST', //GET
             data:{
                 data:da,

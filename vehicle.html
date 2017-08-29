@@ -49,6 +49,7 @@
 	<link rel="stylesheet" href="css/checkbox-11.css">
 	<link rel="stylesheet" href="css/right.css">
 	<link rel="stylesheet" href="css/cns.css">
+	<link rel="stylesheet" href="css/btn-map.css">
 	<style type="text/css">
 		ul.imglist{ margin:0 auto;overflow:hidden}
 		ul.imglist li{ float:left; padding:4px 8px; width:220px;list-style-type:none;}
@@ -58,7 +59,12 @@
 		ul.thumbnails.image_picker_selector{margin-left: 100px}
 		ul.thumbnails.image_picker_selector li{float:left; padding:4px 8px; width:220px;list-style-type:none;}
 		ul.thumbnails.image_picker_selector li img{ display:block; width:220px; height:180px;}
+		.iw_poi_title {color:#CC5522;font-size:20px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+		.iw_poi_content {font:15px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+		label.BMapLabel {padding-right: 105px !important;text-align: center !important;}
 	</style>
+	<!-- map css -->
+
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -186,13 +192,6 @@
 						  获取检索图片
 						</span>
 					</button>
-					<button id="btn-detect" type="button" class="btn btn-primary btn-outline" data-method="getDetect" style="margin-bottom: 30px;display: none">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="检测">
-						  检测图片
-						</span>
-					</button>
-					<input type="checkbox" id="checkbox-11-2"  />
-					<label for="checkbox-11-2" style="margin-left:20px;margin-bottom: 4px;font-size: 62.5%"></label>
 				</div>
 
 			</div>
@@ -281,19 +280,28 @@
 
 				</div>
 			</div>
-			<div id="viewer-re" style="display: none">
-			<div class="row">
-				<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-				<ul id="mytest" class="imglist">
-				</ul>
-				</div>
-			</div>
-			</div>
+
 			<div id="map-re" style="display: none">
 				<div class="row">
 					<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-						<div style="border:#ccc solid 1px;" id="dituContent"></div>
+						<div style="height:550px;border:#ccc solid 1px;" id="dituContent"></div>
 					</div>
+				</div>
+			</div>
+
+			<div id="viewer-re" style="display: none">
+				<div class="row">
+					<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+					<ul id="mytest" class="imglist">
+					</ul>
+					</div>
+				</div>
+				<div class="row fh5co-border-bottom" style="margin-top: 20px;text-align: center">
+					<button id="map-btn-back" type="button" class="btn btn-primary btn-outline"  style="margin-bottom: 30px">
+						<span id="map-span-back" class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="返回">
+						  返回地图显示
+						</span>
+					</button>
 				</div>
 			</div>
 		</div>

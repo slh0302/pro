@@ -5,34 +5,45 @@
  * Date: 2017/3/5
  * Time: 15:48
  */
-//header('Content-Type: application/json');
-echo phpinfo();
-//$mysqli = new mysqli('127.0.0.1', 'root', 'root', 'test');
+header("Content-type: text/html; charset=utf-8");
+$map_array = array();
+if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+
+    $time = fgets($myfile);
+    while(!feof($myfile)) {
+        $temp_array = array();
+        $title = fgets($myfile);
+        $numSpace = fgets($myfile);
+        $point = fgets($myfile);
+
+        $file_num = intval($numSpace);
+        $temp_array["title"] = str_replace("\n","",$title);
+        $temp_array["content"] = str_replace("\n","",fgets($myfile));
+        $temp_array["point"] = str_replace("\n","",$point);
+        $temp_array['url'] = array();
+        array_push($temp_array['url'], $temp_array["content"]);
+        for( $i=1 ;$i<$file_num; $i++){
+            $url_temp = str_replace("\n","",fgets($myfile));
+            if($url_temp != ""){
+                array_push($temp_array['url'], $url_temp);
+            }
+        }
+        array_push($map_array, $temp_array );
+    }
+}
+echo '<br/>';
+foreach($map_array as $ka=>$va){
+    echo $ka."=>".$va." : <br />";
+    foreach($va as $k=>$v) {
+        echo "--------" . $k."=>".$v."<br />";
+        if($k == 'url'){
+            foreach($v as $ku=>$vu){
+                echo "----------------".$ku."=>".$vu."<br />";
+            }
+        }
 
 
-//if (mysqli_connect_errno()) {
- //   echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
- //   exit;
-//}
+    }
 
-//$str="Select * from db_file;";
-//$mysql_result=$mysqli->query($str);
-//$arr=array();
-//$i=0;
-//print_r( $mysql_result);
-//while ($row = $mysql_result->fetch_assoc()){
-//   $arr[$i] = $row;
-//    $i++;
-//}
-
-//if($i >0) {
-//    $result_arr = array("data" => $arr, "msg" => "SUCCESS");
-//}else{
-//    $result_arr = array("data" => $arr, "msg" => "FAILs");
-//}
-//mysqli_close($mysqli);
-//print_r( $arr);
-//echo json_encode($result_arr);
-
-
+}
 ?>
