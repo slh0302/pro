@@ -352,12 +352,12 @@ $(document).ready(function () {
 
         var usage = $("meta[name=usage]");
 
-        var isPerson = false;
-        if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
-            isPerson = false;
-        }else{
-            isPerson = true;
-        }
+        // var isPerson = false;
+        // if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
+        //     isPerson = false;
+        // }else{
+        //     isPerson = true;
+        // }
         //$.get('./php/search_upload.php');
         $.ajax({
             url:'./php/search_upload.php',
@@ -365,7 +365,7 @@ $(document).ready(function () {
             data:{
                 data:da,
                 isDetect:false,
-                isPerson:isPerson
+                usage:usage
             },
             timeout:50000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
@@ -422,12 +422,6 @@ $(document).ready(function () {
         var da = detectImageURL;
 
         var usage = $("meta[name=usage]");
-        var isPerson = false;
-        if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
-            isPerson = false;
-        }else{
-            isPerson = true;
-        }
 
         $.ajax({
             url:'./php/search_upload.php',
@@ -435,7 +429,7 @@ $(document).ready(function () {
             data:{
                 data:da,
                 isDetect:true,
-                isPerson:isPerson
+                usage:usage
             },
             timeout:20000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text

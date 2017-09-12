@@ -55,7 +55,7 @@ $execString="";
 
 
 $isDetect = $input['isDetect'];
-$isPerson = $input['isPerson'];
+$usage = $input['usage'];
 // echo $isDetect;
 // print_r($isPerson);
 
@@ -67,19 +67,30 @@ if($isDetect == "false") {
     $img = base64_decode($base64);
     $filename = date('YmdHis') . '.jpg';
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
-    if($isPerson =="false"){
-        $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
-    }else{
-        $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+    switch ($usage){
+        case 'vehicle':
+            $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
+        case 'person':
+            $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
+        case 'posture':
+            $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
     }
 }else{
-
     $filename =  basename($input['data']);;
 //	echo $filename;
-    if($isPerson=="false"){
-        $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
-    }else{
-        $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+    switch ($usage){
+        case 'vehicle':
+            $execString="../run/search/DoSearch.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
+        case 'person':
+            $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
+        case 'posture':
+            $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
     }
     $a="0";
 }
