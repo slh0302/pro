@@ -104,7 +104,7 @@ if(!dir_is_empty("../run/runResult/originResult/")){
 }
 //exec 执行
 //echo $execString;//$results=my_exec($execString);
-$results=exec($execString);
+$results=my_exec($execString);
 //echo $results;
 $file_result=array();
 $usetime="";

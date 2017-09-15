@@ -350,14 +350,8 @@ $(document).ready(function () {
         $("#searche-target").css('display','none');
         $("#searche-result").css('display','block');
 
-        var usage = $("meta[name=usage]");
+        var usage = $("meta[name=usage]").attr("content");
 
-        // var isPerson = false;
-        // if( $.trim(usage.attr("content")) ==  $.trim("vehicle") ){
-        //     isPerson = false;
-        // }else{
-        //     isPerson = true;
-        // }
         //$.get('./php/search_upload.php');
         $.ajax({
             url:'./php/search_upload.php',
@@ -370,15 +364,10 @@ $(document).ready(function () {
             timeout:50000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend:function(xhr){
-
                 $('.loading').fadeIn();
-
-                console.log(xhr);
-                console.log('发送前');
             },
             success:function(data,textStatus,jqXHR){
-                // alert(data['img'])
-                //
+                console.info(data);
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
                     myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
@@ -397,8 +386,6 @@ $(document).ready(function () {
             },
             error:function(xhr,textStatus){
                 console.log('错误');
-                console.log(xhr);
-                console.log(textStatus);
             },
             complete:function(){
                 $('.loading').fadeOut();
