@@ -77,6 +77,9 @@ if($isDetect == "false") {
         case 'posture':
             $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
+        case 'map':
+            $execString="../run/search/DoMap.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
     }
 }else{
     $filename =  basename($input['data']);;
@@ -91,6 +94,9 @@ if($isDetect == "false") {
         case 'posture':
             $execString="../run/search/DoPosture.sh  "."/home/slh/pro/searchFile/". $filename;
             break;
+        case 'map':
+            $execString="../run/search/DoMap.sh  "."/home/slh/pro/searchFile/". $filename;
+            break;
     }
     $a="0";
 }
@@ -104,7 +110,7 @@ if(!dir_is_empty("../run/runResult/originResult/")){
 }
 //exec 执行
 //echo $execString;//$results=my_exec($execString);
-$results=my_exec($execString);
+$results=exec($execString);
 //echo $results;
 $file_result=array();
 $usetime="";
@@ -120,11 +126,32 @@ if(!dir_is_empty("../run/runResult")) {
 	}
     }
 }
+$map_array = array();
+//if($usage == 'map'){
+//    if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+//        while(!feof($myfile)) {
+//            $temp_array = array();
+//            $path = fgets($myfile);
+//            $re = explode(" ", $path);
+//            $temp_array["title"] = $re[0];
+//            $file_num = intval($re[1]);
+//            $temp_array["content"] = $file_num;
+//            $temp_array["point"] = $re[2];
+//            $temp_array['url'] = array();
+//            for( $i=0 ;$i<$file_num; $i++){
+//                if($re[3+$i] != "")
+//                array_push($temp_array['url'],$re[3+$i]);
+//            }
+//            array_push($temp_array,$map_array);
+//        }
+//    }
+//
+//}
 $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
 if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path,"isPerson"=>$isPerson);
+    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,"origin_img"=>$origin_file_path,"isPerson"=>$isPerson,"map"=>$map_array);
 }else{
     $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a,"isPerson"=>$isPerson);
 }

@@ -27,8 +27,7 @@
 //         lb: 12
 //     }
 // }
-var markerArr = [
-];
+var markerArr = [];
 // icon
 var icon = [{icon:{
         w: 23,
@@ -62,21 +61,27 @@ $("#map-search-btn").click(function () {
             $('.loading').fadeIn();
         },
         success:function(data){
-            var myViewer=$("#mytest");
-            $.each(data['img'],function(n,value) {
-                myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+            $("#map-re").css('display','block');
+            $("#viewer-re").css('display','none');
+            // map-re
+            // data =[
+            //     {
+            //         title: "Rank",
+            //         content: "联通岗",
+            //         point: "37.200251|122.061231",
+            //         isOpen: 0
+            //          url:
+            //     },
+            //     {
+            //         title: "文登南路",
+            //         content: "图片2",
+            //         point: "37.200427|122.069339",
+            //         isOpen: 0
+            //
+            //     }];
+            $.each(data['map'],function(n,value) {
+                markerArr.push(value);
             });
-            $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
-            myViewer.viewer();
-            // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
-            // $("#myorigin").viewer();
-            if(isPerson){
-                console.info($("#mytest li img"));
-                $("#mytest li ").css('text-align','center');
-                $("#mytest li img").css('margin-left','31%');
-                $("#mytest li img").css('width','100px');
-                $("#mytest li img").css('height','300px');
-            }
         },
         error:function(xhr,textStatus){
             console.log('错误');
@@ -89,6 +94,27 @@ $("#map-search-btn").click(function () {
 
 });
 
+$('.map-btn-result').click(function () {
+    alert("more");
+    // destory
+    $("#map-re").css('display','none');
+    $("#viewer-re").css('display','block');
+    var myViewer=$("#mytest");
+    $.each(data['img'],function(n,value) {
+        myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+    });
+    $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
+    myViewer.viewer();
+    // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
+    // $("#myorigin").viewer();
+    if(isPerson){
+        console.info($("#mytest li img"));
+        $("#mytest li ").css('text-align','center');
+        $("#mytest li img").css('margin-left','31%');
+        $("#mytest li img").css('width','100px');
+        $("#mytest li img").css('height','300px');
+    }
+});
 // 构造makerArry
 function makeMakerArry(data) {
     //     data 格式：
@@ -98,11 +124,13 @@ function makeMakerArry(data) {
     console.info(data);
     for(var da in data){
         var temp = {};
+        temp['id'] = da;
         temp['title'] = data[da]['title'];
         temp['content'] = data[da]['content'];
         temp['point'] = data[da]['point'];
         temp['isOpen'] = data[da]['isOpen'];
         temp['icon'] = icon[0]['icon'];
+        temp['url'] = data[da]['url'];
         markerArr.push(temp);
     }
 }
@@ -209,7 +237,7 @@ function createInfoWindow(i) {
     var json = markerArr[i];
     var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b>" +
         "<div class='iw_poi_content'>" + json.content + "</div>" +
-        "<button>查看结果</button>");
+        "<button class='map-btn-result' id='" + json.id + "'>查看结果</button>");
     return iw;
 }
 //创建一个Icon

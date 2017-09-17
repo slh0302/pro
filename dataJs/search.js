@@ -376,20 +376,19 @@ $(document).ready(function () {
                 myViewer.viewer();
                 // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
                 // $("#myorigin").viewer();
-                if(isPerson){
+                console.info(usage);
+                if(usage == 'person'){
                     console.info($("#mytest li img"));
                     $("#mytest li ").css('text-align','center');
-                    $("#mytest li img").css('margin-left','31%');
-                    $("#mytest li img").css('width','100px');
-                    $("#mytest li img").css('height','300px');
                 }
             },
             error:function(xhr,textStatus){
                 console.log('错误');
             },
             complete:function(){
-                $('.loading').fadeOut();
                 console.log('结束');
+                $('.loading').fadeOut();
+
             }
         });
         // $.post("./php/search_upload.php",{data:da},function (data) {
