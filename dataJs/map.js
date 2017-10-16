@@ -50,7 +50,7 @@ $("#map-search-btn").click(function () {
     usage = $("meta[name=usage]").attr("content");
     ///console.info(da);
     $.ajax({
-        url:'./php/search_upload.php',
+        url:'./php/search_map.php',
         type:'POST', //GET
         data:{
             data:da,
@@ -175,8 +175,15 @@ function initMap() {
 //创建地图函数：
 function createMap() {
     var map = new BMap.Map("dituContent",{enableMapClick:false}); //在百度地图容器中创建一个地图
-    var point = new BMap.Point(122.067095, 37.193089); //定义一个中心点坐标
-    map.centerAndZoom(point, 13); //设定地图的中心点和坐标并将地图显示在地图容器中
+    var point;
+    if(usage == "personMap"){
+        //116.317489,39.998813
+        point = new BMap.Point(116.317489, 39.998813); //定义一个中心点坐标
+        map.centerAndZoom(point, 17); //设定地图的中心点和坐标并将地图显示在地图容器中
+    }else{
+        point = new BMap.Point(122.067095, 37.193089); //定义一个中心点坐标
+        map.centerAndZoom(point, 13); //设定地图的中心点和坐标并将地图显示在地图容器中
+    }
     window.map = map; //将map变量存储在全局
 }
 

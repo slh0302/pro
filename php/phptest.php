@@ -47,9 +47,13 @@ $filename="";
 $a="";
 
 $isDetect = "false";
-$usage = "vehicle";
+$usage = "person";
 $out = "";
 
+
+if(!dir_is_empty("../run/runResult/originResult/")){
+    delFile("../run/runResult/originResult/");
+}
 
 if($isDetect == "false") {
     $data = $input['data'];
@@ -60,20 +64,24 @@ if($isDetect == "false") {
 
     // init socket
     $result = socket_connect($socket, $address, $service_port);
-    $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
+    $in = "/home/slh/pro/searchFile/"."20170827205815.jpg" . " 1 512";
     switch ($usage){
         case 'vehicle':
             socket_write($socket, "2 ", 10);
-            $in .= " 1";
+            $return = socket_read($socket, 7);
+            echo "adasdasdasd   " . $return;
+            echo '</br>';
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 10);
+            echo "adasdasdasd   " . $out;
+            echo '</br>';
             socket_close($socket);
             break;
         case 'person':
-            socket_write($socket, "1 ", 8192);
-            $in .= " 0";
+            socket_write($socket, "1 ", 5);
+            $return = socket_read($socket, 8);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 5);
             socket_close($socket);
             break;
     }
@@ -93,46 +101,34 @@ if($isDetect == "false") {
 
 
 //echo $results;
-$file_result=array();
+$file_result = array();
 $usetime="";
 $length = 0;
 
 $map_array = array();
-if($out != "") {
-    $list = explode(",", $out);
-    $usetime = $list[0];
-    $num = $list[1];
-    // title , pic num, point
-    for($i = 1; $i <$num; $i++){
+if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+    $usetime = fgets($myfile);
+    while(!feof($myfile)) {
         $temp_array = array();
-        $temp_array["title"] = $list[1 + $i];
-        $i ++;
-        $file_num = intval($list[1 + $i]);
-        $i ++;
-        $temp_array["point"] = $list[1 + $i];
-        $i ++;
-        $temp_array["content"] = $list[1 + $i];
+        $title = fgets($myfile);
+        $numSpace = fgets($myfile);
+        $point = fgets($myfile);
+        $file_num = intval($numSpace);
+        $temp_array["title"] = str_replace("\n","",$title);
+        $temp_array["content"] = str_replace("\n","",fgets($myfile));
+        $temp_array["point"] = str_replace("\n","",$point);
         $temp_array['url'] = array();
         array_push($temp_array['url'], $temp_array["content"]);
-        for( $j=1 ;$j<$file_num; $j++){
-            if($list[1 + $i + $j] != ""){
-                array_push($temp_array['url'], $list[1 + $i + $j]);
+        for( $i=1 ;$i<$file_num; $i++){
+            $url_temp = str_replace("\n","",fgets($myfile));
+            if($url_temp != ""){
+                array_push($temp_array['url'], $url_temp);
             }
         }
         array_push($map_array, $temp_array );
-        $i += $file_num  ;
     }
 }
+$length = count($map_array);
 
-$origin_file_path="./searchFile/".$filename;
-$length = count($file_result);
-
-if( $length > 0 ){
-    $result = Array("msg"=>"success","data"=>$results,"bytes"=>$a,"img"=>$file_result,"cost time"=>$usetime,
-        "origin_img"=>$origin_file_path,"isPerson"=>$isPerson,"map"=>$map_array);
-}else{
-    $result = Array("msg"=>"FAIL","data"=>$results,"bytes"=>$a,"isPerson"=>$isPerson,"map"=>$map_array);
-}
-
-echo json_encode($result);
+echo json_encode($map_array);
 ?>

@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>IDM SYSTEM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content=""/>
     <meta property="og:image" content=""/>
@@ -19,7 +21,7 @@
     <meta name="twitter:image" content="" />
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
-    <meta name="usage" content="posture" />
+    <meta name="usage" content="vehicle" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
 
@@ -96,10 +98,10 @@
             <ul>
                 <li><a href="index.html">主页</a></li>
                 <li><a href="listPhotos.html">数据查询</a></li>
-            	<li><a href="upload.html">上传数据</a></li>
-                <li><a href="vehicle.html">车辆检索</a></li>
-                <li><a href="personMap.html">行人检索</a></li>
-                <li class="fh5co-active"><a href="posture.html">姿态检索</a></li>
+                <li><a href="upload.html">上传数据</a></li>
+                <li class="fh5co-active"><a href="search.html">车辆检索</a></li>
+                <li><a href="person.html">行人检索</a></li>
+                <li><a href="posture.html">姿态检索</a></li>
             </ul>
         </nav>
 
@@ -112,146 +114,10 @@
 
     <div id="fh5co-main">
         <div id="searche-target" class="fh5co-narrow-content animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft">
-            <div id="show-main">
-                <div class="row">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h1 class="fh5co-heading">行人检索</h1>
-                    </div>
-                </div>
-
-                <div class="docs-buttons" >
-                    <div class="row" style="height: 500px;">
-                        <img style="max-width: 100%" id="image" src="images/back.jpg">
-                    </div>
-
-                    <div class="row" style="margin-top: 20px;text-align: center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="移动图片">
-						  <span class="fa fa-arrows"></span>
-						</span>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
-						<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="开始截图">
-						  <span class="fa fa-crop"></span>
-						</span>
-                            </button>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="放大">
-							  <span class="fa fa-search-plus"></span>
-							</span>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="缩小">
-							  <span class="fa fa-search-minus"></span>
-							</span>
-                            </button>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="crop" title="Crop">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="截图初始化">
-							  <span class="fa fa-check"></span>
-							</span>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-method="clear" title="Clear">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="清空">
-							  <span class="fa fa-remove"></span>
-							</span>
-                            </button>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
-							<span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="重置">
-							  <span class="fa fa-refresh"></span>
-							</span>
-                            </button>
-                            <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
-                                <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-                                <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="上传数据">
-							 <span class="fa fa-upload"></span>
-							</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row fh5co-border-bottom" style="margin-top: 20px;text-align: center">
-                        <button id="btn-crop" type="button" class="btn btn-primary btn-outline" data-method="getCroppedCanvas" style="margin-bottom: 30px">
-						<span id="span-crop" class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="" data-original-title="开始检索">
-						  获取检索图片
-						</span>
-                        </button>
-                    </div>
-
-                </div>
-
-            </div>
-            <div  id="pic-picked" class="row " style="margin-top: 50px">
-                <div class="row">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h2>示例图片</h2>
-                    </div>
-                </div>
-                <!-- picture picked -->
-                <div  class="col-md-12 animate-box fh5co-border-bottom" data-animate-effect="fadeInLeft" style="text-align: center">
-                    <select id="select_pic" class="image-picker show-html">
-                        <option data-img-src="./images/choose/1.jpg" data-img-class="first" data-img-alt="Page 1" value="1">  Page 1  </option>
-                        <option data-img-src="./images/choose/5.jpg" data-img-alt="Page 2" value="2">  Page 2  </option>
-                        <option data-img-src="./images/choose/7.jpg" data-img-alt="Page 3" value="3">  Page 3  </option>
-                        <option data-img-src="./images/choose/11.jpg" data-img-alt="Page 4" value="4"> Page 4 </option>
-                        <option data-img-src="./images/choose/20.jpg" data-img-alt="Page 5" value="5"> Page 5 </option>
-                        <option data-img-src="./images/choose/21.jpg" data-img-alt="Page 6" value="6"> Page 6 </option>
-                        <option data-img-src="./images/choose/22.jpg" data-img-alt="Page 7" value="7"> Page 7 </option>
-                        <option data-img-src="./images/choose/23.jpg" data-img-alt="Page 8" value="8"> Page 8 </option>
-                        <option data-img-src="./images/choose/24.jpg" data-img-alt="Page 9" value="9"> Page 9 </option>
-                        <option data-img-src="./images/choose/25.jpg" data-img-alt="Page 10" value="10"> Page 10 </option>
-                        <option data-img-src="./images/choose/26.jpg" data-img-alt="Page 11" value="11"> Page 11 </option>
-                        <option data-img-src="./images/choose/27.jpg" data-img-alt="Page 12" value="12"> Page 12 </option>
-                        <option data-img-src="./images/choose/28.jpg" data-img-alt="Page 13" value="13"> Page 13 </option>
-                        <option data-img-src="./images/choose/29.jpg" data-img-alt="Page 14" value="14"> Page 14 </option>
-                        <option data-img-src="./images/choose/30.jpg" data-img-alt="Page 15" value="15"> Page 15 </option>
-                        <option data-img-src="./images/choose/12.jpg" data-img-alt="Page 16" data-img-class="last" value="16"> Page 16 </option>
-                    </select>
-                </div>
-            </div>
-
-            <div  id="pic-detect" class="animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px;display: none" >
-                <div class="row">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h1 >Detected Image</h1>
-                        <div id="detect-load" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-                    </div>
-                </div>
-                <div class="row fh5co-border-bottom animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px;margin-bottom:20px;text-align: center">
-                    <img style="height:500px;margin-bottom:20px;" id="image-detect" src="">
-                </div>
-                <div class="row animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px;">
-                    <div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
-                        <h3 >Choose a image and search</h3>
-                        <div id="detect-h2" class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-                    </div>
-                </div>
-                <!-- picture picked -->
-                <div class="row animate-box" data-animate-effect="fadeInLeft" style="margin-top: 20px">
-                    <div  class="col-md-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: center">
-                        <select id="detect_pic" class="image-picker show-html" style="margin-bottom: 20px;display: none">
-
-                        </select>
-                    </div>
-                </div>
-                <div class="row"  style="text-align: center">
-                    <button id="btn-submit" type="button" class="btn btn-primary btn-outline animate-box" data-animate-effect="fadeInLeft" style="margin-top: 30px">
-                        Search Image
-                    </button>
-                </div>
-            </div>
-        </div>
 
 
-        <div id="searche-result" class="fh5co-narrow-content" style="display:none;">
+
+        <div id="searche-result" class="fh5co-narrow-content" style="display:block;">
             <div class="row animate-box"   data-animate-effect="fadeInLeft">
                 <h1 class="fh5co-heading-colored">待查询的图片</h1>
                 <div id="origin-img-dis"  class="col-sm-12 animate-box" data-animate-effect="fadeInLeft" style="text-align: center">
@@ -366,7 +232,6 @@
 <!-- MAIN JS -->
 
 <script src="js/main.js"></script>
-<script src="dataJs/search.js"></script>
 </body>
 </html>
 
