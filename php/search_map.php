@@ -64,7 +64,7 @@ if($isDetect == "false") {
     $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
     switch ($usage){
         case 'vehicleMap':
-            socket_write($socket, "2 ", 10);
+            socket_write($socket, "0 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
             $out = socket_read($socket, 10);

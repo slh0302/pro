@@ -52,6 +52,10 @@ if(!dir_is_empty("../run/runResult/originResult/")){
     delFile("../run/runResult/originResult/");
 }
 
+if(!dir_is_empty("../run/originResult/")){
+    delFile("../run/originResult/");
+}
+
 if($isDetect == "false") {
     $data = $input['data'];
     $base64 = trim($data);
@@ -64,15 +68,17 @@ if($isDetect == "false") {
     $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
     switch ($usage){
         case 'vehicle':
-            $in .= " 1";
+            socket_write($socket, "0 ", 10);
+            $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 10);
             socket_close($socket);
             break;
         case 'person':
-            $in .= " 0";
+            socket_write($socket, "1 ", 10);
+            $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 10);
             socket_close($socket);
             break;
     }
@@ -96,17 +102,17 @@ $file_result=array();
 $usetime="";
 $length = 0;
 
-
-if($out != "") {
-    $list = explode(",", $out);
-    $usetime = $list[0];
-    for($i = 1; $i < count($list); $i ++){
-        $path = $list[$i];
-        if($path != " "){
+if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+    $usetime = fgets($myfile);
+    while(!feof($myfile)) {
+        $path = fgets($myfile);
+        if($path != ""){
             array_push($file_result,$path);
         }
+
     }
 }
+
 $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 
