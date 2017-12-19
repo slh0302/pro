@@ -245,54 +245,54 @@ $(document).ready(function () {
                         console.info(result);
                         da=result.toDataURL('image/jpeg').split(';')[1].split(',')[1];
                        // $('#crop-pic').val(result.toDataURL('image/jpeg'));
-                        $.ajax({
-                            url:'./php/detect_upload.php',
-                            type:'POST', //GET
-                            data:{
-                                data:da
-                            },
-                            timeout:20000,    //超时时间
-                            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                            beforeSend:function(xhr){
-                                $("#pic-picked").css("display","none");
-                                $("#show-main").css("display","none");
-                                $("#pic-detect").css("display","block");
-                                //loading 特效
-                                $('#detect-load').fadeIn();
-                                $('#detect-h2').fadeIn();
-                                $('#btn-submit').attr("disabled", true);
-                            },
-                            success:function(data){
-                                var last=data['count'];
-                                $("#image-detect").attr("src", data['origin_pic']);
-                                var $my_select=$('#detect_pic');
-                                $my_select.css("display","inline");
-                                $.each(data['img'],function(n,value) {
-                                    if(n==0){
-                                        detectImageURL=value;
-                                        $my_select.append("<option data-img-src='"+value+"' data-img-class='first' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
-                                    }else if(n==last-1){
-                                        $my_select.append("<option data-img-src='"+value+"' data-img-class='last' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
-                                    }else $my_select.append("<option data-img-src='"+value+"' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
-                                });
-                            },
-                            error:function(xhr,textStatus){
-                            },
-                            complete:function(){
-                             //   $('.loading').fadeOut();
-                                $('#detect-load').fadeOut();
-                                $('#detect-h2').fadeOut();
-                                $("#detect_pic").imagepicker({
-                                    clicked:function (data) {
-                                        var src_path=data['node'].children().children().attr('src');
-                                        console.log(data['node'][0]);
-                                        detectImageURL=src_path;
-                                    }
-                                });
-                                $('#btn-submit').attr("disabled", false);
-                                console.log('结束');
-                            }
-                        });
+                       //  $.ajax({
+                       //      url:'./php/detect_upload.php',
+                       //      type:'POST', //GET
+                       //      data:{
+                       //          data:da
+                       //      },
+                       //      timeout:20000,    //超时时间
+                       //      dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                       //      beforeSend:function(xhr){
+                       //          $("#pic-picked").css("display","none");
+                       //          $("#show-main").css("display","none");
+                       //          $("#pic-detect").css("display","block");
+                       //          //loading 特效
+                       //          $('#detect-load').fadeIn();
+                       //          $('#detect-h2').fadeIn();
+                       //          $('#btn-submit').attr("disabled", true);
+                       //      },
+                       //      success:function(data){
+                       //          var last=data['count'];
+                       //          $("#image-detect").attr("src", data['origin_pic']);
+                       //          var $my_select=$('#detect_pic');
+                       //          $my_select.css("display","inline");
+                       //          $.each(data['img'],function(n,value) {
+                       //              if(n==0){
+                       //                  detectImageURL=value;
+                       //                  $my_select.append("<option data-img-src='"+value+"' data-img-class='first' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                       //              }else if(n==last-1){
+                       //                  $my_select.append("<option data-img-src='"+value+"' data-img-class='last' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                       //              }else $my_select.append("<option data-img-src='"+value+"' data-img-alt='Page '"+n+"' value='"+n+"'>  Page "+n+"  </option>");
+                       //          });
+                       //      },
+                       //      error:function(xhr,textStatus){
+                       //      },
+                       //      complete:function(){
+                       //       //   $('.loading').fadeOut();
+                       //          $('#detect-load').fadeOut();
+                       //          $('#detect-h2').fadeOut();
+                       //          $("#detect_pic").imagepicker({
+                       //              clicked:function (data) {
+                       //                  var src_path=data['node'].children().children().attr('src');
+                       //                  console.log(data['node'][0]);
+                       //                  detectImageURL=src_path;
+                       //              }
+                       //          });
+                       //          $('#btn-submit').attr("disabled", false);
+                       //          console.log('结束');
+                       //      }
+                       //  });
                     }
                     break;
             }
