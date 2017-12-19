@@ -102,7 +102,13 @@
 			</ul>
 		</nav>
 
-
+		<div class="fh5co-footer" style="margin-bottom: 50px">
+			<h1 id="fh5co-boyu-logo">
+				<a href="index.html">
+					<img src="images/boyu.png" style="width:100px;height: 100px">
+				</a>
+			</h1>
+		</div>
 		<div class="fh5co-footer">
 			<p>Copyright PKU</p>
 		</div>
@@ -260,6 +266,10 @@
 					</ul>
 				</div>
 			</div>
+			<!--<iframe id="frame_result" src= "./result.html">-->
+			<!--<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">-->
+				<!--<h1 class="fh5co-heading-colored">检索结果</h1>-->
+			<!--</div>-->
 			<div class="row">
 				<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
 					<h1 class="fh5co-heading-colored">检索结果</h1>
@@ -279,7 +289,13 @@
 				</div>
 			</div>
 		</div>
+		<!--<div id="searche-result_context" class="fh5co-narrow-content" style="display:none;margin-top: 0px">-->
+			<!--<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft"  >-->
+				<!--<iframe frameborder="0" src="./result.html" scrolling="no" height="400px" width="400px" id="myiframe">-->
 
+				<!--</iframe>-->
+			<!--</div >-->
+		<!--</div>-->
 	</div>
 	<!-- Show the cropped image in modal -->
 	<div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
@@ -363,7 +379,11 @@
 <script src="js/image-picker.js"></script>
 <script src="js/bootstrap-select.min.js"></script>
 <!-- MAIN JS -->
-
+<script>
+    function changeCode(){
+        document.getElementById("img").src="http://www.wubapai.com/verifycode/get?tockenId=QWERTYUISDFGHJEW?"+Math.random();
+    }
+</script>
 <script src="js/main.js"></script>
 <script src="dataJs/search.js"></script>
 </body>
