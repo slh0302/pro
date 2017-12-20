@@ -43,14 +43,15 @@ $filename="";
 $a="";
 $isDetect = $input['isDetect'];
 $usage = $input['usage'];
+$isPerson = 0;
 $out = "";
-if(!dir_is_empty("../run/runResult/originResult/")){
-    delFile("../run/runResult/originResult/");
+if(!dir_is_empty("../run/runResult/")){
+    delFile("../run/runResult/");
 }
 if(!dir_is_empty("../run/originResult/")){
     delFile("../run/originResult/");
 }
-$return = ""
+$return = "";
 if($isDetect == "false") {
     $data = $input['data'];
     $base64 = trim($data);
@@ -59,38 +60,44 @@ if($isDetect == "false") {
     $a = file_put_contents('../searchFile/' . $filename, $img);//保存图片，返回的是字节数
     // init socket
     $result = socket_connect($socket, $address, $service_port);
-    $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
+    $in = $filename . " 1 512";
     switch ($usage){
         case 'vehicle':
             socket_write($socket, "0 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 10);
+            $out = socket_read($socket, 8192);
             socket_close($socket);
+            $isPerson=0;
             break;
         case 'person':
             socket_write($socket, "1 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 10);
+            $out = socket_read($socket, 8192);
             socket_close($socket);
+            $isPerson=1;
             break;
     }
 }
 
-
+$ROOT_DIR = "./run/originResult/";
 //echo $results;
+//echo $out;
 $file_result=array();
 $usetime="";
 $length = 0;
-if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
-    $usetime = fgets($myfile);
-    while(!feof($myfile)) {
-        $path = fgets($myfile);
-        if($path != ""){
-            array_push($file_result,$path);
+if($out != ""){
+    $tmp = explode(',', $out);
+    $usetime = $tmp[0];
+    for($index=1; $index<count($tmp);$index++)
+    {
+        if($tmp[$index] != ""){
+            array_push($file_result, $tmp[$index]);
         }
+
     }
+
 }
 $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
