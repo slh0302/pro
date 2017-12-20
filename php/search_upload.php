@@ -66,7 +66,7 @@ if($isDetect == "false") {
             socket_write($socket, "0 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 10);
             socket_close($socket);
             $isPerson=0;
             break;
@@ -74,7 +74,7 @@ if($isDetect == "false") {
             socket_write($socket, "1 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
-            $out = socket_read($socket, 8192);
+            $out = socket_read($socket, 10);
             socket_close($socket);
             $isPerson=1;
             break;
@@ -87,18 +87,17 @@ $ROOT_DIR = "./run/originResult/";
 $file_result=array();
 $usetime="";
 $length = 0;
-if($out != ""){
-    $tmp = explode(',', $out);
-    $usetime = $tmp[0];
-    for($index=1; $index<count($tmp);$index++)
-    {
-        if($tmp[$index] != ""){
-            array_push($file_result, $tmp[$index]);
+
+if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
+    $usetime = fgets($myfile);
+    while(!feof($myfile)) {
+        $path = fgets($myfile);
+        if($path != ""){
+            array_push($file_result,$path);
         }
-
     }
-
 }
+
 $origin_file_path="./searchFile/".$filename;
 $length = count($file_result);
 if( $length > 0 ){

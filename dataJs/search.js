@@ -2,6 +2,7 @@
  * Created by Su on 2017/2/28.
  */
 var databaseName="";
+var global_view = new Array();
 window.onload(function () {
     $("#checkbox-11-2").attr("checked",'false');//全选
 
@@ -370,10 +371,11 @@ $(document).ready(function () {
                 console.info(data);
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
-                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+                    myViewer.append("<li><img src="+ value_s +" alt='图片1'><span onclick='ReloadImage();' >Rank:&nbsp"+eval(n+1)+"</span></li>");
+                    global_view.push(value);
                 });
                 $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
-                myViewer.viewer();
+
                 // $("#li_origin").append("<img style='max-width: 100%' id='imagei' src="+data['origin_img']+">");
                 // $("#myorigin").viewer();
                 console.info(usage);
@@ -448,3 +450,22 @@ $(document).ready(function () {
         });
     });
 });
+
+
+function ReloadImage() {
+    var myViewer=$("#mytest");
+    //myViewer.viewer().destroy();
+    myViewer.empty();
+    for(var i=0;i<global_view.length;i++){
+        value = global_view[i];
+        value_s = value.substring(0,value.length-1);
+        // console.info(value_s.concat('?t=', Math.random()));
+        myViewer.append("<li><img src="+ value_s +" alt='图片1'><span>Rank:&nbsp"+eval(i+1)+"</span></li>");
+
+    }
+    // viewer = new Viewer(document.getElementById('mytest'), {
+    //     url: 'data-original'
+    // });
+    myViewer.viewer();
+
+}
