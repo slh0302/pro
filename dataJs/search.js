@@ -371,7 +371,7 @@ $(document).ready(function () {
                 console.info(data);
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
-                    myViewer.append("<li><img src="+ value_s +" alt='图片1'><span onclick='ReloadImage();' >Rank:&nbsp"+eval(n+1)+"</span></li>");
+                    myViewer.append("<li><img src="+ value +" alt='图片1'><span onclick='ReloadImage();' >Rank:&nbsp"+eval(n+1)+"</span></li>");
                     global_view.push(value);
                 });
                 $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
