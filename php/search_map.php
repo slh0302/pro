@@ -64,7 +64,7 @@ if($isDetect == "false") {
     $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
     switch ($usage){
         case 'vehicleMap':
-            socket_write($socket, "0 ", 10);
+            socket_write($socket, "2 ", 10);
             $return = socket_read($socket, 7);
             socket_write($socket, $in, strlen($in));
             $out = socket_read($socket, 10);
@@ -78,18 +78,6 @@ if($isDetect == "false") {
             socket_close($socket);
             break;
     }
-}else{
-    $filename =  basename($input['data']);;
-//	echo $filename;
-    switch ($usage){
-        case 'vehicle':
-            $execString="../run/search/DoDetect.sh  "."/home/slh/pro/searchFile/". $filename;
-            break;
-        case 'person':
-            $execString="../run/search/DoPerson.sh  "."/home/slh/pro/searchFile/". $filename;
-            break;
-    }
-    $a="0";
 }
 
 
