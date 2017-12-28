@@ -33,8 +33,8 @@
  }
 
 // server status
-$service_port = 18000;
-$address = 'localhost';
+$service_port = 19000;
+$address = '172.17.0.1';
 $socket = socket_create(AF_INET, SOCK_STREAM, getprotobyname("tcp"));
 if ($socket === false) {
     echo json_encode("socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n");
@@ -48,8 +48,8 @@ $isDetect = $input['isDetect'];
 $usage = $input['usage'];
 $out = "";
 
-if(!dir_is_empty("../run/runResult/originResult/")){
-    delFile("../run/runResult/originResult/");
+if(!dir_is_empty("../run/runResult/")){
+    delFile("../run/runResult/");
 }
 
 if($isDetect == "false") {
@@ -61,7 +61,7 @@ if($isDetect == "false") {
 
     // init socket
     $result = socket_connect($socket, $address, $service_port);
-    $in = "/home/slh/pro/searchFile/". $filename . " 1 512";
+    $in = $filename . " 1 512";
     switch ($usage){
         case 'vehicleMap':
             socket_write($socket, "2 ", 10);
@@ -85,7 +85,7 @@ if($isDetect == "false") {
 $file_result=array();
 $usetime="";
 $length = 0;
-
+$ROOT_DIR = "run/oripic/";
 $map_array = array();
 if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!")){
     $usetime = fgets($myfile);
@@ -96,7 +96,7 @@ if($myfile = fopen("../run/runResult/map.txt", "r") or die("Unable to open file!
         $point = fgets($myfile);
         $file_num = intval($numSpace);
         $temp_array["title"] = str_replace("\n","",$title);
-        $temp_array["content"] = str_replace("\n","",fgets($myfile));
+        $temp_array["content"] = $ROOT_DIR . str_replace("\n","",fgets($myfile));
         $temp_array["point"] = str_replace("\n","",$point);
         $temp_array['url'] = array();
         array_push($temp_array['url'], $temp_array["content"]);
