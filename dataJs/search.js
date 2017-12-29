@@ -350,7 +350,7 @@ $(document).ready(function () {
         da=text.split(';')[1].split(',')[1];
         $('#getCroppedCanvasModal').modal('hide');
         $("#searche-target").css('display','none');
-        $("#searche-result").css('display','block');
+
 
         var usage = $("meta[name=usage]").attr("content");
 
@@ -390,7 +390,7 @@ $(document).ready(function () {
                 console.log('错误');
             },
             complete:function(){
-                timerA = setInterval("reloadimgs();",1000);
+                timerA = setInterval("reloadimgs();",200);
                 console.log('结束');
                 $('.loading').fadeOut();
 
@@ -467,6 +467,7 @@ function reloadimgs() {
     $dataNum += 1;
     if($dataNum >= 1){
         clearInterval(timerA)
+        $("#searche-result").css('display','block');
     }
 }
 
