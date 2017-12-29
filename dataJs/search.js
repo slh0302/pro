@@ -3,6 +3,7 @@
  */
 var databaseName="";
 var global_view = new Array();
+var dataNum = 0;
 window.onload(function () {
     $("#checkbox-11-2").attr("checked",'false');//全选
 
@@ -369,6 +370,7 @@ $(document).ready(function () {
             },
             success:function(data,textStatus,jqXHR){
                 console.info(data);
+                $dataNum = 0;
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
                     myViewer.append("<li><img src="+ value +" alt='图片1'><span onclick='ReloadImage();' >Rank:&nbsp"+eval(n+1)+"</span></li>");
@@ -388,6 +390,7 @@ $(document).ready(function () {
                 console.log('错误');
             },
             complete:function(){
+                timerA = setInterval("reloadimgs();",1000);
                 console.log('结束');
                 $('.loading').fadeOut();
 
@@ -431,7 +434,7 @@ $(document).ready(function () {
                 //
                 var myViewer=$("#mytest");
                 $.each(data['img'],function(n,value) {
-                    myViewer.append("<li><img src="+value+" alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
+                    myViewer.append("<li><img src="+value + "?" + Math.random() + " alt='图片1'><span>Rank:&nbsp"+eval(n+1)+"</span></li>");
                 });
                 $("#search-time").append("<h4>Search&nbspTime:&nbsp "+data['cost time']+"s </h4>");
                 myViewer.viewer();
@@ -452,6 +455,22 @@ $(document).ready(function () {
 });
 
 
+function reloadimgs() {
+    var myViewer=$("#mytest");
+    myViewer.empty();
+    for(var i=0;i<global_view.length;i++){
+        value = global_view[i];
+        value_s = value.substring(0,value.length-1);
+        // console.info(value_s.concat('?t=', Math.random()));
+        myViewer.append("<li><img src="+ value_s + "?" + Math.random() +  " alt='图片1'><span>Rank:&nbsp"+eval(i+1)+"</span></li>");
+    }
+    $dataNum += 1;
+    if($dataNum >= 1){
+        clearInterval(timerA)
+    }
+}
+
+
 function ReloadImage() {
     var myViewer=$("#mytest");
     //myViewer.viewer().destroy();
@@ -460,12 +479,9 @@ function ReloadImage() {
         value = global_view[i];
         value_s = value.substring(0,value.length-1);
         // console.info(value_s.concat('?t=', Math.random()));
-        myViewer.append("<li><img src="+ value_s +" alt='图片1'><span>Rank:&nbsp"+eval(i+1)+"</span></li>");
-
+        myViewer.append("<li><img src="+ value_s + "?" + Math.random() +  " alt='图片1'><span>Rank:&nbsp"+eval(i+1)+"</span></li>");
     }
-    // viewer = new Viewer(document.getElementById('mytest'), {
-    //     url: 'data-original'
-    // });
+
     myViewer.viewer();
 
 }
